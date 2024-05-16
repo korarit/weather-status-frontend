@@ -1,0 +1,32 @@
+/* ตั้งค่า scroll bar ให้เป็นแบบเดียวกับ mobile */
+@media screen and (min-width: 930px) {
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+        border-radius: 6px;
+      }
+      
+      /* ตั้งค่า thumb ของ scroll bar */
+      ::-webkit-scrollbar-thumb {
+        background-color: #666;
+        border-radius: 6px;
+      }
+      
+      /* ตั้งค่า track ของ scroll bar */
+      ::-webkit-scrollbar-track {
+        background-color: #eee;
+        border-radius: 6px;
+      }   
+}
+
+/* กำหนดให้ทุกหน้าเว็บแสดง scroll bar แบบเดียวกับ mobile */
+.scrollbar-mobile {
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: scrollbar;
+}
+
+.scrollbar-object {
+  -webkit-user-drag: element;
+  -moz-user-drag: element;
+  user-drag: element;
+}

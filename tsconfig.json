@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "node_modules/@react-leaflet/core",
+    "node_modules/leaflet",
+    "./**/*.{ts,tsx}",
+    "./**/**/*.{ts,tsx}",
+    "./**/**/**/*.{ts,tsx}",
+    "./**/**/**/**/*.{ts,tsx}",
+    "./**/**/**/**/**/*.{ts,tsx}",
+  ]
+}

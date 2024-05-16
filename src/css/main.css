@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+.App {
+  @apply container items-center min-w-[100%];
+  position: relative;
+  height: 100dvh;
+
+}
+.layout-button-map {  
+  @apply absolute;
+  bottom: 10%;
+  right: 4%;
+
+  display: grid;
+  gap: 1.5vh;
+
+  z-index: 1000;
+}
+
+.font-name-kanit {
+  font-family: 'Kanit', sans-serif;
+}
+
+
+@media screen and (min-width: 400px) {
+  .layout-button-map {
+    @apply right-[5%];
+    width: calc(48px + 1vw + 0.5vh);
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .layout-button-map {
+    @apply right-[4%];
+  }
+}
+
+@media screen and (min-width: 760px) and (max-width: 1024px) and (orientation: portrait) {
+  .layout-button-map {
+    @apply right-[5%];
+  }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .layout-button-map {
+    @apply right-[4%];
+  }
+}

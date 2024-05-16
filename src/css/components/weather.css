@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.weather-box{
+    @apply absolute bottom-0 w-[100%] bg-white rounded-t-lg flex justify-center;
+    overflow: hidden;
+    height: 0px;
+    z-index: 1000;
+    transition: 0.1s;
+
+    .box{
+        @apply grid grid-flow-row auto-rows-max w-[94%] gap-0 h-full;
+
+    }
+    .box-title{
+        @apply col-span-11 px-0 h-min;
+    }
+    .box-close{
+        @apply col-span-1 px-0 h-min text-center;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .weather-box {
+      @apply w-[640px];
+    }
+
+    .now-box {
+      @apply w-[600px];
+    }
+  
+    .col-span-12 {
+      flex-grow: 0;
+    }
+}
+  
+

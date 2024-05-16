@@ -1,0 +1,12 @@
+
+.suggestlist{
+    .remove-button{
+        @apply hidden
+    }
+}
+.suggestlist:hover{
+
+    .remove-button{
+        display: block;
+    }
+}

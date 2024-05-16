@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.layer_map-box{
+    @apply absolute bottom-0 w-full bg-white rounded-t-lg flex justify-center;
+    overflow: hidden;
+    max-height: 0;
+    z-index: 1000;
+    transition: max-height 0.7s;
+
+    .box{
+        width: 96%;
+        @apply grid grid-flow-row auto-rows-max gap-0;
+
+        .box-title{
+            @apply col-span-11 px-0 h-min;
+        }
+        .box-close{
+            @apply col-span-1 px-0 h-min text-right;
+        }
+    }
+}
+
+.layer_map-box.show{
+    max-height: 50vh
+}

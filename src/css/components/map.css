@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.map-container {
+  @apply relative;
+  width: 100%;
+  height: 100%;
+}
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+
+}

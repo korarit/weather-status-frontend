@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.width-web{
+  @apply w-[100%];
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) {
+  .width-web {
+    @apply w-[640px];
+  }
+}

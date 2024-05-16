@@ -1,0 +1,124 @@
+{
+    "thank_data": "Thank you for using data from",
+    "rule_title": "website terms of use",
+    "rule_modal": "Please read <a className='text-red-600 font-bold underline'>website terms of use</a> this is carefully accepting the terms of use of the website and using this website. You acknowledge that you have read and understood the terms of use of this website and you agree to be bound by and abide by these terms of use of this website. Please do not use this website if you do not agree to be bound by these Terms of Use.",
+    "weather_button": "Watch forecast Data",
+    "search_placeholder": "Search by LongdoMap",
+    "more_data": "Learn more",
+    "layer_setting": "Map type",
+    "layer_select": {
+        "default": "Default",
+        "satelite": "Satellite",
+        "terrain": "terrain",
+        "rain": "rain clouds",
+        "air_quality": "Air quality",
+        "fire": "Hot spots"
+    },
+    "sidebar":{
+        "title":"All menu list",
+        "forecast":"Weather forecast",
+        "rule":"Terms of use",
+        "reference":"Reference of data"
+    },
+    "resources_title": {
+        "tmd": "Thai Weather",
+        "wunderground": "Wunderground.com"
+    },
+    "error_message": {
+        "not_data": "No information",
+        "tmd": "Unable to connect to Thai Weather",
+        "wunderground": "Unable to connect to Wunderground.com",
+        "longdomap": "No information found inlongdo Map"
+    },
+    "day_title":{
+        "0":"Sunday",
+        "1":"Monday",
+        "2":"Tuesday",
+        "3":"Wednesday",
+        "4":"Thursday",
+        "5":"Friday",
+        "6":"Saturday"
+    },
+    "month_title":{
+        "0":"January",
+        "1":"February",
+        "2":"March",
+        "3":"April",
+        "4":"May",
+        "5":"June",
+        "6":"July",
+        "7":"August",
+        "8":"September",
+        "9":"October",
+        "10":"November",
+        "11":"December"
+    },
+    "title": {
+        "weather":"Weather forecast Data",
+        "now" : "Current forecast",
+        "hourly_forecast" : "Hourly forecast",
+        "air_quality" : "air quality forecast",
+        "air_quality_tmd": "air quality info from station",
+        "prophecy_air_quality" : "Air quality forecast",
+        "daily_forecast" : "Daily forecast",
+        "inday_forecast": "At date forecast",
+        "daytime":"daytime",
+        "nighttime":"nighttime"
+    },
+    "range_title":{
+        "now":"now",
+        "48hour":"48 hours",
+        "3day":"3 days",
+        "5day":"5 days",
+        "7day":"7 days",
+        "10day":"10 days",
+        "15day":"15 days"
+    },
+    "now_header":{
+        "hourly_forecast": "Hourly forecast",
+        "air_quality": "air quality info",
+        "air_quality_tmd": "air quality info from station",
+        "prophecy_air_quality": "Air quality forecast"
+    },
+    "cloudcover": "Cloud cover",
+    "rain_perchine": "Chance of rain",
+    "rain_count": "Accumulated rain",
+    "temp":"Temperature",
+    "temp_feel_like": "Temperature feel like",
+    "temp_min": "temperature min",
+    "temp_max": "temperature max",
+    "max": "max",
+    "humidity": "Humidity",
+    "dew_point": "Humidity point",
+    "uv_index": "UV Index",
+    "cloud_cover": "cloud cover",
+    "tmd_status_cond":[
+        "The sky is clear.",
+        "Partly cloudy",
+        "Mostly clouds",
+        "cloudy",
+        "light rain",
+        "medium rain",
+        "Heavy rain",
+        "Thunderstorm",
+        "The weather is very cold.",
+        "cold weather",
+        "cold weather",
+        "The weather is very hot."
+    ],
+    "tmd_not_station_airq":"There is no station within 2.5 km.",
+    "tmd_airq_name_data":{
+        "PM2.5":"small dust particles PM2.5",
+        "pm25":"small dust particles PM2.5",
+        "pm10":"large dust particles PM10"
+    },
+    "tmd_status_airq":[
+        "very good",
+        "good",
+        "medium",
+        "Starting to affect health",
+        "Affects health",
+        "It has a great impact on health.",
+        "It has the greatest impact on health."
+    ]
+}

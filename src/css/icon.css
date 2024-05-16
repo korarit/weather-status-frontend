@@ -1,0 +1,775 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.icon-svg-layer-map {
+    width: 70%;
+    background: url('../assets/icon/layer-map.svg') 0 0/contain no-repeat;
+}
+.icon-svg-layer-map::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.icon-svg-gps-map {
+    width: 70%;
+    background: url('../assets/icon/gps_icon.svg') 0 0/contain no-repeat;
+    background-position: center center;
+}
+.icon-svg-gps-map::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.icon-svg-gps-close-map {
+    width: 70%;
+    background: url('../assets/icon/gps_close_icon.svg') 0 0/contain no-repeat;
+    background-position: center center;
+}
+.icon-svg-gps-close-map::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.icon-arrow-left {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/icon/arrow-left.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-cloud-welcome {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/icon/cloud.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* //////////////////////////////////////////////////// map layer icon //////////////////////////////////////////////////// */
+
+.map-layer-icon-street {
+    width: 100%;
+
+    background: url('../assets/icon/hybrid_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-street::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.map-layer-icon-satelite {
+    width: 100%;
+    
+
+
+    background: url('../assets/icon/satelite_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-satelite::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.map-layer-icon-terrain {
+    width: 100%;
+
+
+    background: url('../assets/icon/terrain_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-terrain::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.map-layer-icon-rain {
+    width: 100%;
+
+
+    background: url('../assets/icon/rain_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-rain::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+
+.map-layer-icon-airquality {
+    width: 100%;
+
+
+    background: url('../assets/icon/air_quality_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-airquality::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.map-layer-icon-firms {
+    width: 100%;
+
+
+    background: url('../assets/icon/firms_map.svg') 0 0/contain no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.map-layer-icon-firms::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+
+
+/* //////////////////////////////////////////////////// Wheather icon //////////////////////////////////////////////////// */
+.weather-layer-icon-tmd {
+    width: 100%;
+    background: url('../assets/icon/tmd_logo.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-flex;
+    background-size: contain;
+
+}
+.weather-layer-icon-tmd::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.weather-layer-icon-wunderground {
+    width: 100%;
+    background: url('../assets/icon/wunderground.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-flex;
+    background-size: contain;
+
+}
+.weather-layer-icon-wunderground::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.weather-layer-icon-wunderground-white {
+    width: 100%;
+    background: url('../assets/icon/wunderground-white.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-flex;
+    background-size: contain;
+
+}
+.weather-layer-icon-wunderground-white::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+
+.icon-weather-rain {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/weather_icon/rain.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* //////////////////////////////////////////////////// Wheather Status icon TMD //////////////////////////////////////////////////// */
+/*
+.icon-weather-tmd-day-1 {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/Makin-Things/weather-icons/master/static/clear-day.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin:auto 0;
+  }
+.icon-weather-tmd-day-2{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/2.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-day-3{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/3.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-day-4{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/4.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-day-5{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/5.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-day-6{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/6.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-day-7{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/7.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-day-8{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/8.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.icon-weather-tmd-day-9{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/9.svg') ;
+    background-repeat: no-repeat;
+    background-size: 120% 100%;
+}
+.icon-weather-tmd-day-10{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/10.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-day-11{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/11.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-day-12{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/day/12.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+.icon-weather-tmd-night-1 {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/Makin-Things/weather-icons/master/static/clear-day.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-2{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/2.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-night-3{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/3.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-night-4{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/4.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-night-5{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/5.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.icon-weather-tmd-night-6{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/6.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-7{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/7.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-8{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/8.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.icon-weather-tmd-night-9{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/9.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-10{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/10.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-11{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/11.svg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.icon-weather-tmd-night-12{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/tmd/night/12.svg') ;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*/
+
+/* //////////////////////////////////////////////////// Wheather Status icon Wunderground //////////////////////////////////////////////////// */
+/*
+.icon-weather-wunderground-0{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/0.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-1{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/1.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-2{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/2.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-3{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/3.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-4{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/4.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-5{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/5.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-6{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/6.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-7{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/7.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-8{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/8.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-9{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/9.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-10{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/10.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-11{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/11.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-12{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/12.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-13{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/13.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-14{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/14.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-15{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/15.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-16{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/16.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-17{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/17.svg') ;
+    background-repeat: no-repeat;
+    background-size: 110% 100%;
+}
+
+.icon-weather-wunderground-18{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/18.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 110% 100%;
+}
+
+.icon-weather-wunderground-19{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/19.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-20{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/20.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-21{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/21.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-22{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/22.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-23{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/23.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-24{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/24.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-25{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/25.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-26{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/26.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-27{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/27.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-28{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/28.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-29{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/29.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-30{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/30.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-31{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background: url('../assets/weather_icon/wunderground/31.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-32{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/32.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-33{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/33.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-34{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/34.svg') ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-35{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/35.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-36{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/36.svg') ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-37{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/37.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-38{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/38.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-39{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/39.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-40{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/40.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-41{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/41.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-42{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/42.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-43{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/43.svg') ;
+    background-position: center;
+    
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-45{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/45.svg') ;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-46{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/46.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.icon-weather-wunderground-47{
+    width: 100%;
+    height: 100%;
+    background: url('../assets/weather_icon/wunderground/47.svg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+*/

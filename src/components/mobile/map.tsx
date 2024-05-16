@@ -1,0 +1,213 @@
+
+
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+
+// Leaflet
+import { MapContainer, TileLayer } from 'react-leaflet'
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// tpye from leaflet
+import { LatLngTuple } from 'leaflet';
+
+//rainviews
+import RainView from '../../function/map_rainview';
+//air quality
+import Air_quality_icon from './map/map_airQ';
+//firms
+import Marker_firms from './map/marker_firms';
+//calculate bound
+import {get_StationArea} from '../../function/weather/calculate'
+
+
+import '../../css/components/map.css';
+
+interface LatLonInterface{
+  lat: number;
+  lon: number;
+}
+
+interface OuterFunctionProps {
+  Device: string;
+
+  layername: string;
+  mapsetting: any;
+  map_location: LatLonInterface | null;
+  LocationType: string;
+}
+
+function MapComponent(props:OuterFunctionProps) {
+  
+  const rainviews = new RainView();
+
+
+  //เอา url ของ rainview มาใส่ในตัวแปร
+  const [rainviews_url, setRainviews_url] = useState<string>("");
+  const [rainview_nowcast, setRainview_nowcast] = useState<string>("");
+
+  useEffect(() => {
+    const loadPost = async () => {
+
+        //เอา url ของ rainview มาใส่ในตัวแปร
+        setRainviews_url(await rainviews.getRainviewUrl())
+        //ดึง nowcast มาใส่ในตัวแปร
+        setRainview_nowcast(await rainviews.getNowcastPath())
+    }
+
+    // Call the function
+    loadPost();
+
+  }, []);
+
+  //เก็บประเภทแผนที่
+  const [map_type, setMap_type] = useState<string>("m");
+  const [map, setMap] = useState<L.Map | null>(null)
+  //เก็บ marker ตามตำแหน่ง
+  const [markerGPS, setMarkerGPS] = useState<L.Marker | any>([])
+  //เก็บตำแหน้างเก่าของ marker
+  const [old_GPS, setOld_GPS] = useState<L.LatLng | any>(null)
+
+  useEffect(() => {
+
+    if (props.layername === 'street') {
+      setMap_type('m');
+    }else if (props.layername === 'satelite') {
+      setMap_type('s,h');
+    }else if (props.layername === 'terrain') {
+      setMap_type('p');
+    }
+
+  }, [props.layername]);
+
+  // ไปที่อยู่ตาม gps ที่ได้รับมา โดยไม่ใช่ค่า default ของแผนที่
+  const [defaultLocation, setDefaultLocation] = useState<LatLngTuple>([Number(process.env.REACT_APP_DEFAULT_LAT), Number(process.env.REACT_APP_DEFAULT_LON)]);
+  useEffect(() => {
+    if (props.map_location !== undefined && map !== null) {
+      
+      if(props.map_location !== null){
+
+        const zoom_level:number = Number(process.env.REACT_APP_FLY_TO_ZOOM);
+
+        map?.flyTo([props.map_location.lat, props.map_location.lon], zoom_level);
+        //เพิ่ม marker ตามตำแหน่ง
+        if(props.map_location !== old_GPS){
+
+          //ลบ marker เก่าถ้ามี
+          if(markerGPS !== null) map?.removeLayer(markerGPS);
+
+          let marker_url:string = "";
+          if (props.LocationType === 'place') marker_url = process.env.REACT_APP_PLACE_MARKER_ICON as string;
+          if (props.LocationType === 'gps') marker_url = process.env.REACT_APP_GPS_MARKER_ICON as string;
+
+          setMarkerGPS(L.marker([props.map_location.lat, props.map_location.lon], {
+            icon: L.icon({
+              iconUrl: marker_url,
+              iconSize: [40, 40],
+              iconAnchor: [16, 40]
+            }),
+          }).addTo(map as L.Map));
+
+          setOld_GPS(props.map_location);
+          
+        }
+
+        //บันทึก Bound ของ map ไว้ เพื่อให้สำหรับใช้ในการหาสถานีตรวจวัด ของ iqair ที่อยู่ในขอบเขตของแผนที่ เพื่อใช้สำหรับ กรมอุตุนิยมวิทยา
+        let mapBound:string = JSON.stringify(Object.assign({}, get_StationArea(map, [props.map_location.lat, props.map_location.lon], 15)));
+        localStorage.setItem("Bound_mapForAieQ", mapBound);
+      }else{
+        const lat:number = Number(process.env.REACT_APP_DEFAULT_LAT);
+        const lon:number = Number(process.env.REACT_APP_DEFAULT_LON);
+
+        setDefaultLocation([lat, lon]);
+      }
+
+    }
+  }, [props.map_location]);
+
+  useLayoutEffect(() => {
+    //บันทึก Bound ของ map ไว้ เพื่อให้สำหรับใช้ในการหาสถานีตรวจวัด ของ iqair ที่อยู่ในขอบเขตของแผนที่ เพื่อใช้สำหรับ กรมอุตุนิยมวิทยา
+    if(props.map_location !== null){
+      let mapBound:string = JSON.stringify(Object.assign({}, get_StationArea(map, [props.map_location.lat, props.map_location.lon], 15)));
+      localStorage.setItem("Bound_mapForAieQ", mapBound);
+    }
+
+    //เพิ่ม marker ณ ตำแหน่ง default ของแผนที่
+    const lat:number = Number(process.env.REACT_APP_DEFAULT_LAT);
+    const lon:number = Number(process.env.REACT_APP_DEFAULT_LON);
+    if (props.map_location !== undefined && map !== null) {
+      if(props.map_location === null){
+        setMarkerGPS(L.marker([lat, lon], {
+          icon: L.icon({
+            iconUrl: process.env.REACT_APP_PLACE_MARKER_ICON as string,
+            iconSize: [40, 40],
+            iconAnchor: [16, 40]
+          })
+        }).addTo(map as L.Map));        
+          
+        setOld_GPS([lat, lon]);
+        //
+      }
+    }
+  }, [map]);
+
+  useEffect(() => {
+    if (props.map_location !== undefined && props.map_location !== null && map !== null) {
+      map?.setView([props.map_location.lat, props.map_location.lon]);
+
+      if(markerGPS !== null) map?.removeLayer(markerGPS);
+
+      let marker_url:string = "";
+      if (props.LocationType === 'place') marker_url = process.env.REACT_APP_PLACE_MARKER_ICON as string;
+      if (props.LocationType === 'gps') marker_url = process.env.REACT_APP_GPS_MARKER_ICON as string;
+
+      setMarkerGPS(L.marker([props.map_location.lat, props.map_location.lon], {
+        icon: L.icon({
+          iconUrl: marker_url as string,
+          iconSize: [40, 40],
+          iconAnchor: [16, 40]
+        })
+      }).addTo(map as L.Map));        
+        
+      setOld_GPS([props.map_location.lat, props.map_location.lon]);
+    }
+    console.log("map_location_device", props.map_location);
+  }, [props.Device]);
+
+
+  //เก็บค่าต่างๆของแผนที่
+      
+    return (
+      <div className='map-container'>
+        <MapContainer center={defaultLocation} zoom={16} maxZoom={18} minZoom={6} zoomControl={false} scrollWheelZoom={true}  ref={setMap}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">Google</a> contributors'
+            url={`http://{s}.google.com/vt?lyrs=${map_type}&x={x}&y={y}&z={z}`}
+            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+          />
+
+            {/* rainview พยากรณ์ฝน */}
+          {props.mapsetting.rain ? (
+          <TileLayer
+            url={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`}
+            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+            opacity={0.3}
+          />
+          ) : null}
+
+          {/* แสดงข้อมูลคุณภาพอากาศ */}
+          {props.mapsetting.air_quality ?
+            <Air_quality_icon use_aqi={props.mapsetting.air_quality } />
+            : null  
+          }
+  
+          {/* แสดงข้อมูลไฟไหม้ */}
+          {props.mapsetting.fire ?
+            <Marker_firms use={props.mapsetting.fire } />
+            : null  
+          }
+        </MapContainer>
+      </div>
+    );
+}
+
+export default MapComponent;

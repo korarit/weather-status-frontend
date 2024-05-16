@@ -1,0 +1,7 @@
+.desktop-sideleft {
+  box-shadow: 2px 0 5px -2px #676767;
+}
+
+.desktop-map-width{
+  width: calc(100dvw - 70px);
+}
