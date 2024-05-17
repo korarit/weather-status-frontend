@@ -34,21 +34,21 @@ export default function SideMenu({ open, setOpen, Languages }: { open:boolean, s
                     <div className='icon-cloud-welcome'></div>
                 </div>
                 <p className="text-[1.5rem] text-gray-700 font-name-kanit w-[80%]">Weather Project</p>
-                <button onClick={() => closeMenu()}>
+                <button title="close" onClick={() => closeMenu()}>
                     <i className="icon-cross text-lg md:text-3xl min-[1025px]:text-2xl justify-items-end"></i>
                 </button>
             </div>
 
             <hr className="w-[100%] my-[16px]" />
 
-            <button type="button" className="w-[100%] px-[16px] flex items-center">
+            <button title="weather" type="button" className="w-[100%] px-[16px] flex items-center">
                 <i className='icon-cloud text-[2.2rem] text-center w-[13%] mr-[8px]'></i>
                 <p className="text-[1.3rem] font-name-kanit leading-3">พยากรณ์อากาศจากพิกัด</p>
             </button>
 
             <hr className="w-[100%] mb-[24px] mt-[16px]" />
 
-            <button type="button" className="w-[100%] px-[16px] flex items-center">
+            <button title="rule" type="button" className="w-[100%] px-[16px] flex items-center">
                 <i className='icon-files-empty text-[1.8rem] text-center w-[13%] mr-[8px]'></i>
                 <p className="text-[1.3rem] font-name-kanit leading-3">ข้อตกลงการใช้เว็บไซต์</p>
             </button>

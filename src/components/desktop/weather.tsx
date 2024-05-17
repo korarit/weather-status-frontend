@@ -9,6 +9,7 @@ import TMDDaily from "./weather/tmd/daily";
 import WundergroundNow from "./weather/wunderground/now";
 import WundergroundHourly from "./weather/wunderground/hourly";
 import WundergroundDaily from "./weather/wunderground/daily";
+import WundergroundInDate from "./weather/wunderground/indate";
 
 import "../../css/font.css";
 
@@ -254,6 +255,8 @@ function WeatherShow({ open, LangCode, LatLon }: weatherInterface) {
                         <WundergroundHourly open={range.hourly} LangCode={LangCode} position={LocationNow} />
                     ): range.day ? (
                         <WundergroundDaily open={range.day} LangCode={LangCode} position={LocationNow} count_day={countRange} viewInday={viewInday} />
+                    ): range.inday ? (
+                        <WundergroundInDate open={range.inday} LangCode={LangCode} request_data={inday}  position={LocationNow} useRange={setUseRange}   />
                     ): null}
                     </>
                 ): null

@@ -19,11 +19,10 @@ interface LatLonInterface {
 }
 interface OuterFunctionProps {
   position: LatLonInterface | null;
-  showStatus: boolean;
-  useFrom: string;
-  LangRe: string;
+  LangCode: string;
   request_data: any;
-  useRange: (range: string) => void;
+  open: boolean;
+  useRange: (range: string, count: number) => void;
 }
 function WundergroundInDate(props: OuterFunctionProps) {
 
@@ -163,21 +162,21 @@ function WundergroundInDate(props: OuterFunctionProps) {
       getData_inday(props.position.lat, props.position.lon, request_data['count_day']);
     }
 
-  }, [props.position, props.showStatus, props.request_data, props.useFrom, request_data]);
+  }, [props.position, props.request_data, props.open]);
 
   ///////////////////////////////////////// Language /////////////////////////////////////////
   const [lang, setLang] = useState<any>(translate(localStorage.getItem('languages') as string));
 
   useEffect(() => {
     setLang(translate(localStorage.getItem('languages') as string));
-  }, [props.LangRe])
+  }, [props.LangCode])
 
 
   const listHourly = Hourly["validTimeLocal"] !== undefined ? Hourly["validTimeLocal"].map((a: any, item: number) => (
     <div key={item} className="w-full flex-none border-b-2 first:pt-[0vh] last:border-b-0 border-black pt-[1vh]">
       <div className="grid grid-cols-12 gap-1 min-h-[5vh] h-auto items-center">
 
-        <div className='col-span-3 sm:col-span-1'>
+        <div className='col-span-3 '>
           <p className="text-[2.1vh] font-normal leading-[4.3vh] font-name-kanit">
             {new Date(Hourly["validTimeLocal"][item]).getHours() <= 9
               ? "0" + new Date(Hourly["validTimeLocal"][item]).getHours() + ":00"
@@ -185,19 +184,13 @@ function WundergroundInDate(props: OuterFunctionProps) {
           </p>
         </div>
 
-        <div className='col-span-2 sm:col-span-2'>
+        <div className='col-span-2'>
           <p className="text-center text-[2.3vh] font-bold leading-[4.4vh] font-name-kanit">
             {Hourly["temperature"][item]}°
           </p>
         </div>
 
-
-        <div className='hidden sm:block col-span-6'>
-          <p className="ml-[5%] text-[2.1vh] font-normal leading-[4.4vh] font-name-kanit">
-            {Hourly["wxPhraseLong"][item]}
-          </p>
-        </div>
-        <div className='col-span-3 sm:col-span-1'>
+        <div className='col-span-3'>
           <div className='w-[80%] h-full mx-auto flex items-center'>
 
             <img alt='weather-icon' src={process.env.PUBLIC_URL + `icon/weather_icon/wunderground/${WundergroundInday.cond}.svg`} className="w-[100%] h-[100%]" />
@@ -210,7 +203,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
             <div className='icon-weather-rain'></div>
           </div>
         </div>
-        <div className='col-span-2 sm:col-span-1'>
+        <div className='col-span-2'>
           <p className="text-[2.3vh] leading-[4.4vh] font-normal font-name-kanit">
             {Hourly["precipChance"][item]} %
           </p>
@@ -250,7 +243,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                   <div
                     className="col-span-1"
                     onClick={() =>
-                      props.useRange("day_" + request_data["count_day"])
+                      props.useRange("day", props.request_data["count_day"])
                     }
                   >
                     <button title='close' className="w-[100%] h-[100%] mx-auto grid place-content-center">
@@ -267,13 +260,13 @@ function WundergroundInDate(props: OuterFunctionProps) {
                 <div className="bg-rose-200 rounded-lg w-[100%] h-fit p-[1rem] shadow-md shadow-neutral-800/40">
                   <div className="grid grid-cols-6">
                     <div className="col-span-4">
-                      <p className="text-[5vh] leading-[4.8vh] font-semibold font-name-kanit">
+                      <p className="text-[6vh] leading-[4.8vh] font-semibold font-name-kanit">
                         {Math.floor(WundergroundInday.temp)}°
                       </p>
-                      <p className="text-[2.7vh] font-normal leading-[3vh] font-name-kanit">
+                      <p className="text-[2.3vh] font-normal leading-[3vh] font-name-kanit">
                         {WundergroundInday.cond_txt}
                       </p>
-                      <p className="text-[2.7vh] font-normal leading-[4vh] font-name-kanit">
+                      <p className="text-[2.1vh] font-normal leading-[4vh] font-name-kanit">
                         {lang["temp_min"]}{" "}
                         {Math.floor(WundergroundInday.temp_min)}°{" "}
                         {lang["max"]} {Math.floor(WundergroundInday.temp_max)}
@@ -393,7 +386,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                           {lang['title']['nighttime']} {WundergroundInday.date_title}
                         </p>
 
-                        <p className="ml-[1vw] mt-[0.5rem] text-[2vh] font-name-kanit">
+                        <p className="ml-[1vw] mt-[0.5rem] text-[1.8vh] font-name-kanit">
                           {nighttimeData.narrative}
                         </p>
 

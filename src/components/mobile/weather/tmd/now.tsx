@@ -27,7 +27,7 @@ interface OuterFunctionProps {
     useFrom: string;
     LangRe: string;
 }
-function TMD_Now(props:OuterFunctionProps) {
+function TMDNow(props:OuterFunctionProps) {
 
     const [NowTMD, setNowTMD] = useState<any>({
         temp: '0',
@@ -288,4 +288,4 @@ function TMD_Now(props:OuterFunctionProps) {
     );
 };
 
-export default TMD_Now;
+export default TMDNow;

@@ -24,7 +24,7 @@ interface OuterFunctionProps {
     useFrom: string;
     LangRe: string;
 }
-function TMD_48hour(props:OuterFunctionProps) {
+function TMD48hour(props:OuterFunctionProps) {
 
     const [HourlyTMD, setHourlyTMD] = useState<any>(null);
 
@@ -156,4 +156,4 @@ function TMD_48hour(props:OuterFunctionProps) {
     )
 };
 
-export default TMD_48hour;
+export default TMD48hour;

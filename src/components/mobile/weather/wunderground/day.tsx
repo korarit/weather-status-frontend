@@ -25,7 +25,7 @@ interface OuterFunctionProps {
     count_day: number;
     viewInday: (index:number, countDay:number, date:number, filterIndex:number) => void;
 }
-function Wunderground_Day(props:OuterFunctionProps) {
+function WundergroundDay(props:OuterFunctionProps) {
 
     const [DailyData, setDailyData] = useState<any>([]);
     const [filteredIndexes, setFilteredIndexes] = useState<any>([]);
@@ -194,4 +194,4 @@ function Wunderground_Day(props:OuterFunctionProps) {
     )
 };
 
-export default Wunderground_Day;
+export default WundergroundDay;

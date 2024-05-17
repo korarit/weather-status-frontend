@@ -10,15 +10,15 @@ import '../../css/components/weather.css'
 
 import translate from '../../function/languages';
 
-import TMD_Now from './weather/tmd/now';
-import TMD_48hour from './weather/tmd/48hour';
-import TMD_Day from './weather/tmd/day';
+import TMDNow from './weather/tmd/now';
+import TMD48hour from './weather/tmd/48hour';
+import TMDDay from './weather/tmd/day';
 
 
-import Wunderground_Now from './weather/wunderground/now';
-import Wunderground_48hour from './weather/wunderground/48hour';
-import Wunderground_day from './weather/wunderground/day';
-import Wunderground_InDate from './weather/wunderground/indate';
+import WundergroundNow from './weather/wunderground/now';
+import Wunderground48hour from './weather/wunderground/48hour';
+import WundergroundDay from './weather/wunderground/day';
+import WundergroundInDate from './weather/wunderground/indate';
 
 
 interface LatLonInterface{
@@ -214,27 +214,27 @@ function Weather(props:WeatherProps) {
                         <>
                             {   range.now ?
                                 <div className='overflow-y-auto h-[52vh] w-[100%] mt-[0.5vh]'>
-                                    <TMD_Now LangRe={props.LangRe} position={userPosition} showStatus={range.now} useFrom={useFrom} showheight={props.height} />
+                                    <TMDNow LangRe={props.LangRe} position={userPosition} showStatus={range.now} useFrom={useFrom} showheight={props.height} />
                                 </div>
                                 : range.day_2 ?
                                 <div className=' h-[55vh] mt-[0.5vh]'>
-                                    <TMD_48hour LangRe={props.LangRe} position={userPosition} showStatus={range.day_2} useFrom={useFrom} />
+                                    <TMD48hour LangRe={props.LangRe} position={userPosition} showStatus={range.day_2} useFrom={useFrom} />
                                 </div>
                                 : range.day_3 ?
                                 <div className=' h-[55vh] mt-[0.5vh]'>
-                                    <TMD_Day LangRe={props.LangRe} count_day={3} position={userPosition} showStatus={range.day_3} useFrom={useFrom} />
+                                    <TMDDay LangRe={props.LangRe} count_day={3} position={userPosition} showStatus={range.day_3} useFrom={useFrom} />
                                 </div>
                                 : range.day_5 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <TMD_Day LangRe={props.LangRe} count_day={5} position={userPosition} showStatus={range.day_5} useFrom={useFrom} />
+                                    <TMDDay LangRe={props.LangRe} count_day={5} position={userPosition} showStatus={range.day_5} useFrom={useFrom} />
                                 </div>
                                 : range.day_7 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <TMD_Day LangRe={props.LangRe} count_day={7} position={userPosition} showStatus={range.day_7} useFrom={useFrom} />
+                                    <TMDDay LangRe={props.LangRe} count_day={7} position={userPosition} showStatus={range.day_7} useFrom={useFrom} />
                                 </div>
                                 : range.day_10 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <TMD_Day LangRe={props.LangRe} count_day={10} position={userPosition} showStatus={range.day_10} useFrom={useFrom} />
+                                    <TMDDay LangRe={props.LangRe} count_day={10} position={userPosition} showStatus={range.day_10} useFrom={useFrom} />
                                 </div>
                                 : <></>
                             }
@@ -245,35 +245,35 @@ function Weather(props:WeatherProps) {
                         <>
                             {   range.now ?
                                 <div className='overflow-y-auto max-h-[52vh] w-[100%] mt-[0.5vh]'>
-                                    <Wunderground_Now LangRe={props.LangRe} position={userPosition} showStatus={range.now} useFrom={useFrom} />
+                                    <WundergroundNow LangRe={props.LangRe} position={userPosition} showStatus={range.now} useFrom={useFrom} />
                                 </div>
                                 : range.day_2 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <Wunderground_48hour LangRe={props.LangRe} position={userPosition} showStatus={range.day_2} useFrom={useFrom} />
+                                    <Wunderground48hour LangRe={props.LangRe} position={userPosition} showStatus={range.day_2} useFrom={useFrom} />
                                 </div>
                                 : range.day_3 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <Wunderground_day LangRe={props.LangRe} viewInday={viewInday} count_day={3} position={userPosition} showStatus={range.day_3} useFrom={useFrom} />
+                                    <WundergroundDay LangRe={props.LangRe} viewInday={viewInday} count_day={3} position={userPosition} showStatus={range.day_3} useFrom={useFrom} />
                                 </div>
                                 : range.day_5 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <Wunderground_day LangRe={props.LangRe} viewInday={viewInday} count_day={5} position={userPosition} showStatus={range.day_5} useFrom={useFrom} />
+                                    <WundergroundDay LangRe={props.LangRe} viewInday={viewInday} count_day={5} position={userPosition} showStatus={range.day_5} useFrom={useFrom} />
                                 </div>
                                 : range.day_7 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <Wunderground_day LangRe={props.LangRe} viewInday={viewInday} count_day={7} position={userPosition} showStatus={range.day_7} useFrom={useFrom} />
+                                    <WundergroundDay LangRe={props.LangRe} viewInday={viewInday} count_day={7} position={userPosition} showStatus={range.day_7} useFrom={useFrom} />
                                 </div>
                                 : range.day_10 ?
                                 <div className='h-[55vh] mt-[0.5vh]'>
-                                    <Wunderground_day LangRe={props.LangRe} viewInday={viewInday} count_day={10} position={userPosition} showStatus={range.day_10} useFrom={useFrom} />
+                                    <WundergroundDay LangRe={props.LangRe} viewInday={viewInday} count_day={10} position={userPosition} showStatus={range.day_10} useFrom={useFrom} />
                                 </div>
                                 : range.day_15 ?
                                     <div className='h-[55vh] mt-[0.5vh]'>
-                                        <Wunderground_day LangRe={props.LangRe} viewInday={viewInday} count_day={15} position={userPosition} showStatus={range.day_15} useFrom={useFrom} />
+                                        <WundergroundDay LangRe={props.LangRe} viewInday={viewInday} count_day={15} position={userPosition} showStatus={range.day_15} useFrom={useFrom} />
                                     </div>
                                 : range.inday ?
                                 <div className='h-[54vh] mt-[0.5vh]'>
-                                    <Wunderground_InDate LangRe={props.LangRe} request_data={inday} useRange={setUseRange} position={userPosition} showStatus={range.inday} useFrom={useFrom} />
+                                    <WundergroundInDate LangRe={props.LangRe} request_data={inday} useRange={setUseRange} position={userPosition} showStatus={range.inday} useFrom={useFrom} />
                                 </div>
                                 : null
                             }

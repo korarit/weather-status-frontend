@@ -25,7 +25,7 @@ interface OuterFunctionProps {
     count_day: number;
 }
 
-function TMD_Day(props:OuterFunctionProps) {
+function TMDDay(props:OuterFunctionProps) {
 
     const [DailyTMD, setDailyTMD] = useState<any>(null);
 
@@ -168,4 +168,4 @@ function TMD_Day(props:OuterFunctionProps) {
     )
 };
 
-export default TMD_Day;
+export default TMDDay;

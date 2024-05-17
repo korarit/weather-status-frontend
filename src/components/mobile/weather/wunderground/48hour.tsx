@@ -19,7 +19,7 @@ interface OuterFunctionProps {
     useFrom: string;
     LangRe: string;
 }
-function Wunderground_48hour(props:OuterFunctionProps) {
+function Wunderground48hour(props:OuterFunctionProps) {
 
     const [Hourly, setHourly] = useState<any>([]);
 
@@ -149,4 +149,4 @@ function Wunderground_48hour(props:OuterFunctionProps) {
     )
 };
 
-export default Wunderground_48hour;
+export default Wunderground48hour;
