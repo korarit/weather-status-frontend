@@ -7,7 +7,7 @@ import translate from '../../../function/languages'
 
 //import '../../../css/App.css'
 
-export default function Accept_rule(props) {
+export default function AcceptRule(props) {
   const [open, setOpen] = useState(props.isopen)
   const [openNot, setOpenNot] = useState(false)
 

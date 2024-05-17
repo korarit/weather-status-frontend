@@ -10,14 +10,14 @@ import MapComponent from '../components/mobile/map';
 
 //component ส่วนการค้นหา
 import Search from '../components/mobile/search';
-import Search_result from '../components/mobile/search_result';
+import SearchResult from '../components/mobile/search_result';
 
 //component footer bar
 import Footerbar from '../components/mobile/footerbar';
 //component ปุ่มในแผนที่
-import { Gps_Button, Layer_Button } from '../components/mobile/button';
+import { GpsButton, LayerButton } from '../components/mobile/button';
 //component layer map
-import Layer_map from '../components/mobile/layer_map';
+import LayerMap from '../components/mobile/layer_map';
 //component ส่วนแสดงผลสภาพอากาศ
 import Weather from '../components/mobile/weather';
 //component side bar
@@ -202,7 +202,7 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
 
         {/* search result (ผลการค้นหา) */}
         <div className={`row ${useSearch ? 'h-[93%] min-[400px]:h-[94%]' : 'h-[0]'} w-[98%] bg-white mx-auto overflow-y-auto`}>
-          <Search_result LangRe={refreshlanguage} searchData={searchData} goToLocation={goToLocation} useSearch={useSearch}/>
+          <SearchResult LangRe={refreshlanguage} searchData={searchData} goToLocation={goToLocation} useSearch={useSearch}/>
         </div>
 
 
@@ -211,8 +211,8 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
           <div className='width-of-map'>
             {/* ปุ่มแสดง layer แผนที่ + GPS*/}
             <div className={`layout-button-map ${useSearch ? 'hidden' : null}`}>
-              <Gps_Button onPress={() => GetuserLocation()} can_use_gps={can_use_gps} />
-              <Layer_Button onPress={() => setMapSettingLayerShow(true)} />
+              <GpsButton onPress={() => GetuserLocation()} can_use_gps={can_use_gps} />
+              <LayerButton onPress={() => setMapSettingLayerShow(true)} />
             </div>
           </div>
           {/* แผนที่ */}
@@ -231,7 +231,7 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
         </div>
         
         {/* Layer popup */}
-        <Layer_map LangRe={refreshlanguage} show={MapSettingLayerShow} mapsetting={mapLayerSetting} onPrees={mapLayerSettingListFunc} closeLayer={() => setMapSettingLayerShow(false)}/>
+        <LayerMap LangRe={refreshlanguage} show={MapSettingLayerShow} mapsetting={mapLayerSetting} onPrees={mapLayerSettingListFunc} closeLayer={() => setMapSettingLayerShow(false)}/>
 
         {/* Wheather Data */}
         <Weather LangRe={refreshlanguage} height={WeatherHeight} showStatus={WeatherShow} position={MapLocation} closeLayer={() => closeWeatherLayer()}/>

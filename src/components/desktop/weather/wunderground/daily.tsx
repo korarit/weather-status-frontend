@@ -39,7 +39,6 @@ function WundergroundDaily ({open, LangCode, position, count_day, viewInday}:Wun
 
         //ข้อมูลรายวัน
         setDailyData(data);
-        const dates:Date = new Date();
 
         if(data["validTimeLocal"] !== undefined){
             if(data["daypart"][0]["iconCode"][0] === null){

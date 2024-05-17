@@ -96,8 +96,8 @@ function MapComponent(props:OuterFunctionProps) {
           if(markerGPS !== null) map?.removeLayer(markerGPS);
 
           let marker_url:string = "";
-          if (props.LocationType === 'place') marker_url = process.env.REACT_APP_PLACE_MARKER_ICON as string;
-          if (props.LocationType === 'gps') marker_url = process.env.REACT_APP_GPS_MARKER_ICON as string;
+          if (props.LocationType === 'place') marker_url = process.env.PUBLIC_URL as string +  process.env.REACT_APP_PLACE_MARKER_ICON as string;
+          if (props.LocationType === 'gps') marker_url = process.env.PUBLIC_URL as string +  process.env.REACT_APP_GPS_MARKER_ICON as string;
 
           setMarkerGPS(L.marker([props.map_location.lat, props.map_location.lon], {
             icon: L.icon({

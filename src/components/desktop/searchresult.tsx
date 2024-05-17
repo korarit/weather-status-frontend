@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 
 
-import translate from "../../function/languages";
+// import translate from "../../function/languages";
 import Search_data from "../../function/location/search";
 import {InsertSearchDB} from "../../function/localDatabase/search";
 

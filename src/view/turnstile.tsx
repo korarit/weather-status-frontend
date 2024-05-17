@@ -12,7 +12,7 @@ import {cacheDustboyReset} from '../function/weather/airqualityCMU';
 import { createDB } from '../function/localDatabase/db';
 
 //modal
-import Accept_rule from '../components/mobile/modal/accept_rule';
+import AcceptRule from '../components/mobile/modal/accept_rule';
 //import Voice_search from '../components/mobile/modal/voice_search';
 
 import '../css/router/turnstile.css';
@@ -21,7 +21,7 @@ import '../css/icon.css';
 import '../css/cloud_svg.css';
 
 
-function Bot_check() {
+function BotCheck() {
 
   // status bot checker กรณีที่เปิดใช้งาน
   const [status, setStatus] = useState<boolean>(process.env.REACT_APP_TURNSTILE_USE === 'true' ? false : true);
@@ -150,7 +150,7 @@ function Bot_check() {
     <div className='width-web bg-white'>
     <div className='h-[100dvh]'>
 
-      <Accept_rule isopen={openRule} setAgree={setAgree} />
+      <AcceptRule isopen={openRule} setAgree={setAgree} />
       <div className='h-[70%] flex flex-col items-center justify-center'>
         <div className='grid grid-cols-6  w-[90%] sm:w-[60%] lg:w-[80%] h-[20%] mb-[15vh] sm:mb-[10vh] lg:mb-[15vh]'>
 
@@ -316,4 +316,4 @@ function Bot_check() {
 
 }
 
-export default Bot_check;
+export default BotCheck;

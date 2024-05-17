@@ -3,7 +3,7 @@ import React from 'react';
 import '../../css/components/button.css';
 import '../../css/icon.css'
 
-export function Gps_Button(props) {
+export function GpsButton(props) {
 
     if(navigator.geolocation && props.can_use_gps !== false){
         return (
@@ -21,7 +21,7 @@ export function Gps_Button(props) {
 
 };
 
-export function Layer_Button(props) {
+export function LayerButton(props) {
     return (
         <button title='layer-map' className="button-layer-map flex justify-center items-center" onClick={props.onPress}>
             <i className="icon-svg-layer-map color-gray-500"></i>

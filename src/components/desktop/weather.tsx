@@ -127,7 +127,7 @@ function WeatherShow({ open, LangCode, LatLon }: weatherInterface) {
                         className={`w-full h-[4.5vh] ${
                         useFrom === "tmd" ? "bg-neutral-800" : "bg-zinc-50"
                         } rounded-md border-neutral-400 border  shadow-md shadow-neutral-900/20 ${
-                        useFrom == "tmd" ? "text-white" : "text-black"
+                        useFrom === "tmd" ? "text-white" : "text-black"
                         }  text-[1.7vh] font-medium inline-flex justify-center items-center font-name-kanit`}
                         onClick={() => setUseFrom("tmd")}
                     >
@@ -139,7 +139,7 @@ function WeatherShow({ open, LangCode, LatLon }: weatherInterface) {
                 </div>
                 <div>
                     <button
-                        className={`w-full h-[4.5vh] ${useFrom === "wunderground" ? "bg-neutral-800" : "bg-zinc-50"} rounded-md border-neutral-950 border  shadow-md shadow-neutral-800/20 ${useFrom == "wunderground" ? "text-white" : "text-black"} text-[1.9vh] font-medium inline-flex justify-center items-center font-name-kanit`}
+                        className={`w-full h-[4.5vh] ${useFrom === "wunderground" ? "bg-neutral-800" : "bg-zinc-50"} rounded-md border-neutral-950 border  shadow-md shadow-neutral-800/20 ${useFrom === "wunderground" ? "text-white" : "text-black"} text-[1.9vh] font-medium inline-flex justify-center items-center font-name-kanit`}
                         onClick={() => setUseFrom("wunderground")}
                     >
                         <div className="w-[3vh] h-[3vh] mr-[1vh] rounded-md">

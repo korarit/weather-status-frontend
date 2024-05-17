@@ -8,7 +8,7 @@ import '../../css/font.css';
 
 import LoadingSpin from './loading_spin';
 
- function Search_result({searchData, useSearch, goToLocation, LangRe}) {
+ function SearchResult({searchData, useSearch, goToLocation, LangRe}) {
     const [data, setData] = useState<any>('');
     const [haveData, setHaveData] = useState<boolean>(false);
 
@@ -126,4 +126,4 @@ import LoadingSpin from './loading_spin';
     );
 }
 
-export default Search_result;
+export default SearchResult;

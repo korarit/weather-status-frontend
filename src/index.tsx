@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 //import './index.css';
 
 //router
-import Bot_check from './view/turnstile';
+import BotCheck from './view/turnstile';
 import Rule from './view/rule';
 import Reference from './view/reference';
 
@@ -15,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Bot_check />,
+    element: <BotCheck />,
     children: [
     ],
   },
