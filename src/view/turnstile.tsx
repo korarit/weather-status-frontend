@@ -146,13 +146,11 @@ function BotCheck() {
     <>
     {/* ยังไม่ผ่าน bot check / ไม่รับข้อตกลง */}
     { status === false || agreeRule === false ?
-    <div className='flex flex-col items-center justify-center landscape:bg-gray-400'>
-    <div className='width-web bg-white'>
     <div className='h-[100dvh]'>
 
       <AcceptRule isopen={openRule} setAgree={setAgree} />
-      <div className='h-[70%] flex flex-col items-center justify-center'>
-        <div className='grid grid-cols-6  w-[90%] sm:w-[60%] lg:w-[80%] h-[20%] mb-[15vh] sm:mb-[10vh] lg:mb-[15vh]'>
+      <div className='h-[50%] lg:h-[50%] flex flex-col items-center justify-center'>
+        <div className='grid grid-cols-6  w-[90%] sm:w-[60%] lg:w-[30%] h-[20%]  lg:mt-[10%]'>
 
           <div className='col-span-2 flex flex-col items-center justify-center'>
             <div className="w-[100%] h-[100%]">
@@ -164,20 +162,23 @@ function BotCheck() {
             <p className='text-center text-xl md:text-4xl sm:text-2xl laptop:text-3xl font-name-kanit'>Weather Forecast Project</p>
           </div>
         </div>
-        { agreeRule === true || rule_setting === 'false'?
-            <Turnstile
-              siteKey={process.env.REACT_APP_TURNSTILE_SITE_KEY as string}
-              onError={() => setStatus(false)}
-              onExpire={() => setStatus(false)}
-              onSuccess={(token) => vertifly(token)} 
-            />
-        : null
-        }
       </div>
 
       {/* รายชื่อแหล่งข้อมูล */}
-      <div className='h-[30%] flex flex-col items-center justify-center'>
-
+      <div className='h-[50%] lg:h-fit flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-[96px]'>
+        <div className='lg:h-[100%] lg:flex lg:items-center lg:justify-center'>
+          { agreeRule === true || rule_setting === 'false'?
+              <Turnstile
+                siteKey={process.env.REACT_APP_TURNSTILE_SITE_KEY as string}
+                onError={() => setStatus(false)}
+                onExpire={() => setStatus(false)}
+                onSuccess={(token) => vertifly(token)} 
+              />
+          : null
+          }
+        </div>
+        
+        <div className='h-[100%] lg:h-fit flex flex-col items-center justify-center'>
             <p className='text-center text-xl sm:text-4xl lg:text-2xl font-name-kanit'>{lang['thank_data']}</p>
             <div className='grid items-center grid-cols-3 w-[90%] my-[2vh]'>
               <div className='col-span-1'>
@@ -211,10 +212,10 @@ function BotCheck() {
               </div>
               
             </div>
+        </div>
       </div>
       
-    </div>
-    </div>
+      
     </div>
     : null
   }

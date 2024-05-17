@@ -41,7 +41,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%] ml-[5%]">
                 <img
                   alt="Google Map"
-                  src="https://cdn.discordapp.com/attachments/943868917330374718/1172561016211648562/Google_Maps_icon_2015-2020.svg"
+                  src={process.env.PUBLIC_URL + "/referance_icon/googlemap.png"}
                   style={{ height: "90%", width: "60%" }}
                 />
               </div>
@@ -58,8 +58,8 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%] ml-[5%]">
                 <img
                   alt="NASA's FIRMS"
-                  src="https://cdn.discordapp.com/attachments/943868917330374718/1172591235232448652/NASA_logo_1.svg"
-                  style={{ height: "90%", width: "90%" }}
+                  src={process.env.PUBLIC_URL + "/referance_icon/nasa_firms.png"}
+                  style={{ height: "70%", width: "60%" }}
                 />
               </div>
               <div className="h-[30%] flex items-center justify-center">
@@ -75,7 +75,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%] ml-[5%]">
                 <img
                   alt="Longdo Map"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172591881834741771/longdoMap.png"
+                  src={process.env.PUBLIC_URL + "/referance_icon/longdomap.png"}
                   style={{ height: "90%", width: "60%" }}
                   className="rounded-xl border border-neutral-900"
                 />
@@ -92,14 +92,14 @@ function Reference() {
               
               <div className="h-[18vh] flex justify-center items-center mb-[1%] ml-[5%]">
                 <img
-                  alt="NASA Worldview"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172592350204276787/iqair-logo-2022-v2.png"
-                  style={{ height: "90%", width: "60%" }}
-                  className="rounded-xl border border-neutral-900"
+                  alt="pm2_5"
+                  src={process.env.PUBLIC_URL + "/referance_icon/nrct.png"}
+                  style={{ height: "60%", width: "90%" }}
+                  className="rounded-xl"
                 />
               </div>
               <div className="h-[30%] flex items-center justify-center">
-                <p className="text-2xl font-name-kanit font-normal text-center">iqair.com</p>
+                <p className="text-2xl font-name-kanit font-normal text-center">https://pm2_5.nrct.go.th/</p>
               </div>
               
             </div>
@@ -110,7 +110,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%]">
                 <img
                   alt="wunderground.com"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172592759815806987/Weath_undergr_logo14.png"
+                  src={process.env.PUBLIC_URL + "/referance_icon/weatherunderground.png"}
                   style={{ height: "90%", width: "70%" }}
                 />
               </div>
@@ -127,7 +127,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%]">
                 <img
                   alt="GISTDA"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172593198888132710/640px-GISTDA_LOGO.png"
+                  src={process.env.PUBLIC_URL + "/referance_icon/gistda.png"}
                   style={{ height: "100%", width: "90%" }}
                 />
               </div>
@@ -144,7 +144,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%]">
                 <img
                   alt="rainviewer.com"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172593612777869402/rainviewer.png"
+                  src={process.env.PUBLIC_URL + "/referance_icon/rainviewer.png"}
                   style={{ height: "90%", width: "60%" }}
                   className="rounded-xl border border-neutral-900"
                 />
@@ -160,7 +160,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%]">
                 <img
                   alt="Thaiwater"
-                  src="https://media.discordapp.net/attachments/943868917330374718/1172594092077760605/thaiwater.png"
+                  src={process.env.PUBLIC_URL + "/referance_icon/thaiwater.png"}
                   style={{ height: "90%", width: "60%" }}
                 />
               </div>
@@ -175,7 +175,7 @@ function Reference() {
               <div className="h-[18vh] flex justify-center items-center mb-[1%]">
                 <img
                   alt="Thailand Meteorological Department"
-                  src="https://cdn.discordapp.com/attachments/943868917330374718/1172594605217300520/Seal_of_the_Meteorological_Department_of_Thailand_1.svg"
+                  src={process.env.PUBLIC_URL + "/referance_icon/tmd.png"}
                   style={{ height: "90%", width: "60%" }}
                 />
               </div>
