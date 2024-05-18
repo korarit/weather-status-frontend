@@ -148,16 +148,10 @@ function SeacrhBox({useclose, usesearch, searchValue, closeSuggest, setKeyword, 
     }
 
     useEffect(() => {
-        if(searchValue !== null && searchInput.current){
-            searchInput.current.value = searchValue;
-        }
-    }, [searchValue]);
-
-    useEffect(() => {
         if(searchValue !== null && searchValue !== '' && searchInput.current){
             searchInput.current.value = searchValue;
         }
-    }, []);
+    }, [searchValue]);
 
     useEffect(() => {
         if(searchInput.current){

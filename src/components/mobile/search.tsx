@@ -1,4 +1,5 @@
-import React, {useLayoutEffect, useEffect, useState} from 'react';
+import React, {useLayoutEffect, useEffect, useState, useRef} from 'react';
+
 
 import translate from '../../function/languages';
 
@@ -15,14 +16,21 @@ function Search(props) {
         setLang(translate(null));
     }, [props.LangRe]);    
 
+    const search_text = useRef<HTMLInputElement>(null);
+
     async function setSearch(){
-        let search_text = document.getElementById('search-input')?.value;
+
+        console.log('search', search_text?.current);
+
+        if(!search_text || !search_text.current){
+            return;
+        }
         
         //ตรวจสอบว่ามีอักษรมากกว่า 2 ตัวหรือไม่
-        if(search_text.length >= 2){
+        if(search_text.current.value.length > 2){
             // แสดง loading
             setSearchStatus(true);
-            var status_search:boolean = props.FuncSearch(search_text);
+            var status_search:boolean = props.FuncSearch(search_text.current.value);
             if(status_search){
                 // ซ่อน loading
                 setSearchStatus(false);
@@ -62,6 +70,8 @@ function Search(props) {
                 placeholder={`${lang['search_placeholder']}`}
                 className="search-input-have-button font-name-kanit text-xl md:text-3xl min-[1025px]:text-[1.3rem] text-slate-700" 
                 id="search-input"
+
+                ref={search_text}
                 onFocus={() => setSearchFocused(true)} 
                 onBlur={() => setSearchFocused(false)}
                 onKeyDown={(e) => searchKeyPress(e)}
