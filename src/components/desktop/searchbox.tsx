@@ -157,7 +157,7 @@ function SeacrhBox({useclose, usesearch, searchValue, closeSuggest, setKeyword, 
         if(searchValue !== null && searchValue !== '' && searchInput.current){
             searchInput.current.value = searchValue;
         }
-    });
+    }, []);
 
     useEffect(() => {
         if(searchInput.current){

@@ -166,13 +166,14 @@ function BotCheck() {
 
       {/* รายชื่อแหล่งข้อมูล */}
       <div className='h-[50%] lg:h-fit flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-[96px]'>
-        <div className='lg:h-[100%] lg:flex lg:items-center lg:justify-center'>
+        <div className='flex items-center justify-center h-full'>
           { agreeRule === true || rule_setting === 'false'?
               <Turnstile
                 siteKey={process.env.REACT_APP_TURNSTILE_SITE_KEY as string}
                 onError={() => setStatus(false)}
                 onExpire={() => setStatus(false)}
                 onSuccess={(token) => vertifly(token)} 
+                className='my-auto'
               />
           : null
           }
