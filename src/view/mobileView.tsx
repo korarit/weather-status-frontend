@@ -220,6 +220,8 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
             Device={Device} 
             layername={mapLayerSetting.use_map} 
             mapsetting={mapLayerSetting} 
+
+            set_location={setMapLocation}
             map_location={MapLocation} 
             LocationType={LocationType}   
           />

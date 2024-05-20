@@ -32,6 +32,8 @@ interface OuterFunctionProps {
 
   layername: string;
   mapsetting: any;
+
+  set_location: Function;
   map_location: LatLonInterface | null;
   LocationType: string;
   zoom: any;
@@ -64,9 +66,9 @@ function MapComponent(props:OuterFunctionProps) {
   const [map_type, setMap_type] = useState<string>("m");
   const [map, setMap] = useState<L.Map | null>(null)
   //เก็บ marker ตามตำแหน่ง
-  const [markerGPS, setMarkerGPS] = useState<L.Marker | any>([])
+  const [markerGPS, setMarkerGPS] = useState<L.Marker | null>(null)
   //เก็บตำแหน้างเก่าของ marker
-  const [old_GPS, setOld_GPS] = useState<L.LatLng | any>(null)
+  const [old_GPS, setOld_GPS] = useState<LatLonInterface | null>(null)
 
   useEffect(() => {
 
@@ -89,9 +91,10 @@ function MapComponent(props:OuterFunctionProps) {
 
         const zoom_level:number = Number(process.env.REACT_APP_FLY_TO_ZOOM);
 
-        map?.flyTo([props.map_location.lat, props.map_location.lon], zoom_level);
+        
         //เพิ่ม marker ตามตำแหน่ง
         if(props.map_location !== old_GPS){
+          map?.flyTo([props.map_location.lat, props.map_location.lon], zoom_level);
 
           //ลบ marker เก่าถ้ามี
           if(markerGPS !== null) map?.removeLayer(markerGPS);
@@ -106,6 +109,7 @@ function MapComponent(props:OuterFunctionProps) {
               iconSize: [40, 40],
               iconAnchor: [16, 40]
             }),
+            draggable: true
           }).addTo(map as L.Map));
 
           setOld_GPS(props.map_location);
@@ -125,6 +129,7 @@ function MapComponent(props:OuterFunctionProps) {
     }
   }, [props.map_location]);
 
+  // เมื่อแผนที่มีการเปลี่ยนแปลง
   useLayoutEffect(() => {
     //บันทึก Bound ของ map ไว้ เพื่อให้สำหรับใช้ในการหาสถานีตรวจวัด ของ iqair ที่อยู่ในขอบเขตของแผนที่ เพื่อใช้สำหรับ กรมอุตุนิยมวิทยา
     if(props.map_location !== null){
@@ -145,15 +150,17 @@ function MapComponent(props:OuterFunctionProps) {
             iconUrl: process.env.REACT_APP_PLACE_MARKER_ICON as string,
             iconSize: [40, 40],
             iconAnchor: [16, 40]
-          })
+          }),
+          draggable: true
         }).addTo(map as L.Map));        
           
-        setOld_GPS([lat, lon]);
+        setOld_GPS({lat: lat, lon: lon});
         //
       }
     }
   }, [map]);
 
+  //หากขนาดหน้าจอเปลี่ยนแปลง ให้ทำการเพิ่ม marker ตามตำแหน่งเดิม
   useEffect(() => {
       if (props.map_location !== undefined && props.map_location !== null && map !== null) {
         map?.setView([props.map_location.lat, props.map_location.lon]);
@@ -169,10 +176,11 @@ function MapComponent(props:OuterFunctionProps) {
             iconUrl: marker_url as string,
             iconSize: [40, 40],
             iconAnchor: [16, 40]
-          })
+          }),
+          draggable: true
         }).addTo(map as L.Map));        
         
-        setOld_GPS([props.map_location.lat, props.map_location.lon]);
+        setOld_GPS({lat: props.map_location.lat, lon: props.map_location.lon});
       }
     console.log("map_location_device", props.map_location);
   }, [props.Device]);
@@ -188,6 +196,17 @@ function MapComponent(props:OuterFunctionProps) {
     }
     //console.log("zoom", props.zoom);
   }, [props.zoom]);
+
+
+  // drag marker แล้วส่งค่าตำแหน่งกลับไป
+  if (markerGPS !== null) markerGPS?.on('dragend', async function(event) {
+    let marker = event.target;
+    let position = marker.getLatLng();
+    console.log(position);
+    await setOld_GPS({lat: position.lat, lon: position.lng});
+    //ส่งค่าตำแหน่งกลับไป
+    props.set_location({lat: position.lat, lon: position.lng});
+  });
 
 
   //เก็บค่าต่างๆของแผนที่

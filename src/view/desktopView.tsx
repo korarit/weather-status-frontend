@@ -372,10 +372,11 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
                 <div className="w-[100%] h-[100%] z-[2] absolute" tabIndex={2}>
                     <MapDesktop
                         Device={Device}
-
                         layername={mapLayerSetting.use_map} 
                         mapsetting={mapLayerSetting} 
-                        map_location={LatLonWeather} 
+
+                        set_location={setLatLonWeather}
+                        map_location={LatLonWeather}
                         LocationType={LocationType} 
 
                         zoom={zoom}
