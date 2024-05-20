@@ -203,7 +203,7 @@ function TMDNow({open, LangCode, position}:NowType){
         <>
             <div className="bg-rose-200 rounded-lg w-[100%] h-fit py-[1vh] px-[2vh] shadow-md shadow-neutral-800/40">
                 <div className="grid grid-cols-6">
-                    <div className="col-span-4 max-h-[13vh]">
+                    <div className="col-span-4 min-h-[13vh] h-fit">
                         <p className="text-[5vh] font-semibold leading-[5vh] font-name-kanit">
                         {Math.floor(NowTMD.temp)}°
                         </p>
@@ -215,7 +215,7 @@ function TMDNow({open, LangCode, position}:NowType){
                         </p>
                     </div>
 
-                    <div className="col-span-2 max-h-[13vh]">
+                    <div className="col-span-2 h-full">
                         <div className="w-full h-full flex items-center justify-center pt-[0.5rem]">
                         {new Date(NowTMD.time).getHours() < 18 &&
                         new Date(NowTMD.time).getHours() > 6 ? (

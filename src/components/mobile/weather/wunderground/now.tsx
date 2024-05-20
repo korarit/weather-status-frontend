@@ -167,14 +167,14 @@ function WundergroundNow(props:OuterFunctionProps) {
             {/* ****** แสดงข้อมูลที่ดึงมาได้ ****** */}
             <div className='relative'>
                 <div className='bg-rose-200 rounded-lg w-[100%] h-fit py-[1vh] shadow-md shadow-neutral-800/40 px-[2vh]'>
-                    <div className='grid grid-cols-6 h-[12vh]'>
+                    <div className='grid grid-cols-6 min-h-[12vh] h-fit'>
                         <div className='col-span-4'>
                             <p className='text-[5vh] leading-[5vh] font-semibold font-name-kanit'>{Math.floor(NowWunderground.temp)}°</p>
                             <p className='text-[2.7vh] font-normal leading-[3vh] font-name-kanit'>{NowWunderground.cond_txt}</p>
                             <p className='text-[2.7vh] font-normal leading-[4vh] font-name-kanit'>{lang['temp_feel_like']} {Math.floor(NowWunderground.temp_feel)}°</p>
                         </div>
 
-                        <div className='col-span-2 h-[12vh]'>
+                        <div className='col-span-2 h-full'>
                             <div className='w-full h-full flex justify-center items-center'>
                                 <div className='h-[11vh]'>
                                     <img alt='wunderground_cloud' src={process.env.PUBLIC_URL + `icon/weather_icon/wunderground/${NowWunderground.cond}.svg`} className="max-w-[15vh] h-[12vh]"/>

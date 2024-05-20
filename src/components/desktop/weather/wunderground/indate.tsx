@@ -220,7 +220,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
     <div className='h-[95%] overflow-y-auto'>
       {/* แสดง error หาก errorStatus เป็น true */}
       {errorStatus ? (
-        <div className="w-[100%] h-[50vh] flex items-center justify-center">
+        <div className="w-[100%] h-[50vh] flex items-center justify-center pr-4">
           <p className="text-[3vh] font-semibold font-name-kanit text-center">
             {lang["error_message"]["wunderground"]}
           </p>
@@ -238,7 +238,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
           {errorStatus === false ? (
             <>
               {/* ****** แสดงข้อมูลที่ดึงมาได้ ****** */}
-              <div className="relative">
+              <div className="relative pr-3">
                 <div className="grid grid-cols-12">
                   <div
                     className="col-span-1"
@@ -283,7 +283,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                 </div>
               </div>
 
-              <div className="mt-[2vh] mb-[2vh]">
+              <div className="mt-[2vh] mb-[2vh] pr-3">
                 <div className=" bg-orange-100 rounded-lg min-h-fit max-h-[25vh] shadow-md shadow-neutral-800/40 pt-[1vh] pb-[1vh] px-[1rem] mb-[1vh]">
                   <p className="text-[2.5vh] font-semibold leading-[3vh] font-name-kanit">
                     {lang["now_header"]["hourly_forecast"]}
@@ -300,7 +300,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
               </div>
 
               {daytimeData !== null ? (
-                <div className="mb-[2vh]">
+                <div className="mb-[2vh] pr-3">
                   <div className=" bg-gray-100 rounded-lg h-fit  border shadow-md shadow-neutral-800/40 pt-[1vh] pb-[1vh] pl-[1vh] pr-[1vh] mb-[1vh]">
                     <p className="ml-[1vw] text-[2.5vh] font-semibold leading-[3vh] font-name-kanit">
                       {lang['title']['daytime']} {WundergroundInday.date_title}
@@ -314,7 +314,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
 
                       <div className="w-[94%] mx-auto grid grid-cols-2 gap-[1.5rem]">
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-thermometer-half text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["temp"]}</p>
                           </div>
@@ -322,7 +322,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                           <p className='font-name-kanit text-[2.2vh] font-bold ml-[4.3vh]'>{daytimeData['temp']} °</p>
                         </div>
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-cloud text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["cloudcover"]}</p>
                           </div>
@@ -335,7 +335,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
 
                       <div className="w-[94%] mx-auto grid grid-cols-2 gap-[1.5rem] ">
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-umbrella text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["rain_perchine"]}</p>
                           </div>
@@ -343,7 +343,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                           <p className='font-name-kanit text-[2.2vh] font-bold ml-[4.3vh]'>{daytimeData.rain_precip} %</p>
                         </div>
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-rain text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["rain_count"]}</p>
                           </div>
@@ -356,7 +356,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
 
                       <div className="w-[94%] mx-auto grid grid-cols-2 gap-[1.5rem]">
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-droplet text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["humidity"]}</p>
                           </div>
@@ -364,7 +364,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
                           <p className='font-name-kanit text-[2.2vh] font-bold ml-[4.3vh]'>{daytimeData.humidity} %</p>
                         </div>
                         <div className="col-span-1">
-                          <div className='grid grid-flow-col auto-cols-max gap-x-3'>
+                          <div className='flex items-center gap-x-3'>
                             <i className='icon-sun text-[3vh] text-center text-sky-600'></i>
                             <p className='font-name-kanit text-[2vh]'>{lang["uv_index"]}</p>
                           </div>
@@ -380,7 +380,7 @@ function WundergroundInDate(props: OuterFunctionProps) {
 
               {nighttimeData !== null ? (
 
-                    <div className="mb-[1vh]">
+                    <div className="mb-[1vh] pr-3">
                       <div className="bg-gray-100 rounded-lg h-fit border shadow-md shadow-neutral-800/40 pt-[1vh] pb-[1vh] pl-[1vh] pr-[1vh]">
                         <p className="ml-[1vw] text-[2.5vh] font-semibold leading-[3vh] font-name-kanit overflow-hidden text-ellipsis whitespace-nowrap">
                           {lang['title']['nighttime']} {WundergroundInday.date_title}
