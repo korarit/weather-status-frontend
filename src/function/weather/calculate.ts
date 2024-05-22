@@ -58,3 +58,23 @@ export function airq_status_txt(aqi:number){
         return list_cond[6];
     }
 }
+
+export function airq_status_explain(aqi:number){
+    const list_cond:any = translate(localStorage.getItem("languages") as string)["tmd_explain_airq"] as any;
+
+    if(aqi <= 25){
+        return list_cond[0];
+    }else if(aqi <= 50 && aqi > 25){
+        return list_cond[1];
+    }else if(aqi <= 100 && aqi > 50){
+        return list_cond[2];
+    }else if(aqi <= 150 && aqi > 100){
+        return list_cond[3];
+    }else if(aqi <= 200 && aqi > 150){
+        return list_cond[4];
+    }else if(aqi <= 300 && aqi > 200){
+        return list_cond[5];
+    }else if(aqi > 300){
+        return list_cond[6];
+    }
+}

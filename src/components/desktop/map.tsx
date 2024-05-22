@@ -36,6 +36,9 @@ interface OuterFunctionProps {
   set_location: Function;
   map_location: LatLonInterface | null;
   LocationType: string;
+
+  OpenAirQualityModal: Function;
+
   zoom: any;
 }
 
@@ -231,11 +234,11 @@ function MapComponent(props:OuterFunctionProps) {
 
           {/* แสดงข้อมูลคุณภาพอากาศ */}
           {props.mapsetting.air_quality ?
-            <AirqualityIcon use_aqi={props.mapsetting.air_quality } />
+            <AirqualityIcon use_aqi={props.mapsetting.air_quality } openModal={props.OpenAirQualityModal} />
             : null  
           }
   
-          {/* แสดงข้อมูลไฟไหม้ */}
+          {/* แสดงข้อมูลจุด hotspot จากดาวเทียมของ NASA */}
           {props.mapsetting.fire ?
             <MarkerFirms use={props.mapsetting.fire } />
             : null  

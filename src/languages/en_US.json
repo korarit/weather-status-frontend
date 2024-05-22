@@ -6,6 +6,12 @@
     "search_placeholder": "Search by LongdoMap",
     "more_data": "Learn more",
     "layer_setting": "Map type",
+    "airquality_modal_station": "Air quality information",
+    "airquality_modal":{
+        "aqi": "Air quality index",
+        "pm25": "PM2.5",
+        "datetime": "Data Update At"
+    },
     "layer_select": {
         "default": "Default",
         "satelite": "Satellite",
@@ -120,5 +126,14 @@
         "Affects health",
         "It has a great impact on health.",
         "It has the greatest impact on health."
+    ],
+    "tmd_explain_airq":[
+        "Air quality is considered satisfactory, and air pollution poses little or no risk.",
+        "Air quality is considered satisfactory, and air pollution poses little or no risk.",
+        "Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people. For example, people who are unusually sensitive to ozone may experience respiratory symptoms.",
+        "Although general public is not likely to be affected at this AQI range, people with lung disease, older adults and children are at a greater risk from exposure to ozone, whereas persons with heart and lung disease, older adults and children are at greater risk from the presence of particles in the air.",
+        "Everyone may begin to experience some adverse health effects, and members of the sensitive groups may experience more serious effects.",
+        "This would trigger a health alert signifying that everyone may experience more serious health effects.",
+        "This would trigger health warnings of emergency conditions. The entire population is more likely to be affected."
     ]
 }

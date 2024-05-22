@@ -3,6 +3,7 @@ import React,{useState, useEffect} from "react";
 import translate from "../../../function/languages";
 
 import "../../../css/font.css";
+import "../../../css/animation.css";
 
 interface OuterFunctionProps {
     open: boolean;
@@ -39,8 +40,16 @@ export default function LayerMapModel({open, mapsetting, SelectLayer, closeLayer
         }
     }, [mapsetting.use_map, open]);
 
+
+    const [open_modal, set_open_modal] = useState<boolean>(false);
+
+    useEffect(() => {
+        set_open_modal(open);
+    }, [open]);
+
+
     return (
-        <div className="w-[550px] h-fit bg-white rounded-xl border-slate-500 border drop-shadow-2xl p-4 flex flex-col ">
+        <div className={`w-[550px] h-fit bg-white rounded-xl border-slate-500 border drop-shadow-2xl p-4 flex flex-col modal ${open_modal ? 'open' : 'close'}`}>
 
             <div className="w-[100%] grid grid-cols-6">
                 <p className="col-span-5 text-2xl font-bold font-name-kanit">

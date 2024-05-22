@@ -9,6 +9,7 @@ import SideMenu from "../components/desktop/sideMenu";
 
 //model
 import LayerMapModel from "../components/desktop/model/layerMap";
+import AirQualityModel from "../components/desktop/model/airquality";
 
 import "../css/font.css";
 import "../css/desktop/main.css";
@@ -120,11 +121,13 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
 
     interface ModalShowType {
         layer_map: boolean;
+        air_quality: boolean;
         voice_search: boolean;
         earth_quake: boolean;
     }
     const [modelShow, setModelShow] = useState<ModalShowType>({
         layer_map: false,
+        air_quality: false,
         voice_search: false,
         earth_quake: false
     });
@@ -132,6 +135,7 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
     function ManangeModel(key: string, newValue: boolean){
         let modelDefault: ModalShowType = {
             layer_map: false,
+            air_quality: false,
             voice_search: false,
             earth_quake: false
         }
@@ -145,6 +149,25 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
 
     //////////////////////////////////////////////// Side Menu Control ////////////////////////////////////////////////
     const [sideMenu, setSideMenu] = useState<boolean>(false);
+
+
+    //////////////////////////////////////////////// AirQuality Modal Control ////////////////////////////////////////////////
+    interface DustboyStationType {
+        dustboy_lat: number;
+        dustboy_lon: number;
+        id: number;
+        log_datetime: string;
+        pm10: number;
+        pm25: number;
+        th_aqi: number;
+        us_aqi: number;
+    }
+        
+    const [dustboy_station, setDustboyStation] = useState<DustboyStationType | null>(null);
+    function OpenAirQualityStation(stationID: DustboyStationType){
+        setDustboyStation(stationID);
+        ManangeModel('air_quality', true);
+    }
 
     //////////////////////////////////////////////// Layer Map Setting Data ////////////////////////////////////////////////
 
@@ -300,15 +323,27 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
                 </div>
 
                 {/* Model All */}
-                {modelShow.layer_map ?
+                {modelShow.layer_map || modelShow.air_quality ?
                 <div className=" w-[100%] h-[100%] flex items-center justify-center z-[300] backdrop-opacity-10 backdrop-invert bg-black/20 absolute">
-                    <LayerMapModel
-                        open={true}
-                        mapsetting={mapLayerSetting}
-                        SelectLayer={MapLayerSettingData}
-                        closeLayer={() => ManangeModel('layer_map', false)}
-                        LangCode={refreshlanguage}
-                    />
+                    {modelShow.layer_map ?
+                        <LayerMapModel
+                            open={modelShow.layer_map}
+                            mapsetting={mapLayerSetting}
+                            SelectLayer={MapLayerSettingData}
+                            closeLayer={() => ManangeModel('layer_map', false)}
+                            LangCode={refreshlanguage}
+                        />
+                    : null
+                    }
+                    {modelShow.air_quality ?
+                        <AirQualityModel
+                            open={modelShow.air_quality}
+                            closeLayer={() => ManangeModel('air_quality', false)}
+                            LangCode={refreshlanguage}
+                            StationData={dustboy_station}
+                        />
+                    : null
+                    }
                 </div>
                 : null
                 }
@@ -372,12 +407,15 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
                 <div className="w-[100%] h-[100%] z-[2] absolute" tabIndex={2}>
                     <MapDesktop
                         Device={Device}
+
                         layername={mapLayerSetting.use_map} 
                         mapsetting={mapLayerSetting} 
 
                         set_location={setLatLonWeather}
                         map_location={LatLonWeather}
                         LocationType={LocationType} 
+
+                        OpenAirQualityModal={OpenAirQualityStation}
 
                         zoom={zoom}
                     />
