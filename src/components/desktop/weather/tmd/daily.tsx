@@ -71,7 +71,7 @@ function TMDDaily({open ,LangCode, position, count_day}: TMDDailyInterface){
         >
           <p className=" text-[2.5vh] font-normal text-indigo-900 font-name-kanit">
               { 
-              lang['day_title'][new Date(item.time).getDay()]+ atdate +new Date(item.time).getDate()+" "+
+              lang['day_title'][new Date(item.time).getDay()]+" "+atdate +new Date(item.time).getDate()+" "+
               lang['month_title'][new Date(item.time).getMonth()]+" "+(new Date(item.time).getFullYear()+543)
               }
           </p>

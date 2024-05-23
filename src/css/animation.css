@@ -1,5 +1,6 @@
 .modal {
     transform: translateY(-20%);
+    opacity: 1;
   }
   
 .modal.open {
@@ -8,6 +9,6 @@
 }
 
 .modal.close {
-    transition: transform 0.3s ease-out;
-    transform: translateY(-20%);
+    transition: transform 0.4s ease-in-out;
+    transform: translateY(+30%);
 }

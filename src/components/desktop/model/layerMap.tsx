@@ -47,6 +47,13 @@ export default function LayerMapModel({open, mapsetting, SelectLayer, closeLayer
         set_open_modal(open);
     }, [open]);
 
+    function closeModal(){
+        set_open_modal(false);
+        setTimeout(() => {
+            closeLayer();
+        }, 200);
+    }
+
 
     return (
         <div className={`w-[550px] h-fit bg-white rounded-xl border-slate-500 border drop-shadow-2xl p-4 flex flex-col modal ${open_modal ? 'open' : 'close'}`}>
@@ -55,7 +62,7 @@ export default function LayerMapModel({open, mapsetting, SelectLayer, closeLayer
                 <p className="col-span-5 text-2xl font-bold font-name-kanit">
                     {lang['layer_setting']}
                 </p>
-                <div className='col-span-1 text-right' onClick={() => closeLayer()}>
+                <div className='col-span-1 text-right' onClick={() => closeModal()}>
                     <i className='icon-cross text-[1.6rem]'></i>
                 </div>
             </div>
