@@ -123,6 +123,9 @@ export default function AirqualityIcon({use_aqi, openModal}) {
             click: () => {
               openModal(marker);
             },
+            mousedown: () => {
+              openModal(marker);
+            },
           }}
         >
           {/* You can add a popup to the marker */}
