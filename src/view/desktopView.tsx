@@ -164,8 +164,8 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
     }
         
     const [dustboy_station, setDustboyStation] = useState<DustboyStationType | null>(null);
-    function OpenAirQualityStation(stationID: DustboyStationType){
-        setDustboyStation(stationID);
+    function OpenAirQualityStation(stationData: DustboyStationType){
+        setDustboyStation(stationData);
         ManangeModel('air_quality', true);
     }
 
