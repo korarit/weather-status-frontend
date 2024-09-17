@@ -20,6 +20,8 @@ import { GpsButton, LayerButton } from '../components/mobile/button';
 import LayerMap from '../components/mobile/layer_map';
 //component ส่วนแสดงผลสภาพอากาศ
 import Weather from '../components/mobile/weather';
+// component ส่วนแสดงผลคุณภาพอากาศ
+import AirQuality from '../components/mobile/airquality';
 //component side bar
 import SideBar from '../components/mobile/SideBar';
 
@@ -107,6 +109,35 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
     }
   };
   
+  //////////////////////////////////////////////// OPEN Air Quality ////////////////////////////////////////////////
+
+  const [AirQualityShow, setAirQualityShow] = useState<boolean>(false);
+
+  interface DustboyStationType {
+    dustboy_lat: number;
+    dustboy_lon: number;
+    id: number;
+    log_datetime: string;
+    pm10: number;
+    pm25: number;
+    th_aqi: number;
+    us_aqi: number;
+  }
+    
+  const [dustboy_data, setDustboyData] = useState<DustboyStationType | null>(null);
+
+  function OpenAirQualityStation(stationData: DustboyStationType){
+    setDustboyData(stationData);
+
+      setAirQualityShow(true);
+      if(MapSettingLayerShow){
+          setMapSettingLayerShow(false); 
+      }
+
+      if(WeatherShow){
+        closeWeatherLayer();
+      }
+  }
 
   //////////////////////////////////////////////// User Location ////////////////////////////////////////////////
 
@@ -223,7 +254,9 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
 
             set_location={setMapLocation}
             map_location={MapLocation} 
-            LocationType={LocationType}   
+            LocationType={LocationType}
+
+            OpenAirQuality={OpenAirQualityStation}
           />
         </div>
 
@@ -237,6 +270,9 @@ function MobileView({Device, MapLocation, LocationType, searchValue, mapLayerSet
 
         {/* Wheather Data */}
         <Weather LangRe={refreshlanguage} height={WeatherHeight} showStatus={WeatherShow} position={MapLocation} closeLayer={() => closeWeatherLayer()}/>
+
+        {/* Air Quality Data */}
+        <AirQuality LangRe={refreshlanguage} dustboyData={dustboy_data} show={AirQualityShow} mapsetting={mapLayerSetting} onPrees={mapLayerSettingListFunc} closeLayer={() => setAirQualityShow(false)}/>
 
         {/* Side bar */}
         <SideBar LangRe={refreshlanguage} open={openSideBar} Refresh={setRefreshlanguage} closeSideBar={() => setOpenSideBar(false)}/>

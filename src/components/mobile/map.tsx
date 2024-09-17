@@ -13,9 +13,9 @@ import { LatLngTuple } from 'leaflet';
 //rainviews
 import RainView from '../../function/map_rainview';
 //air quality
-import Air_quality_icon from './map/map_airQ';
+import AirQualityIcon from './map/map_airQ';
 //firms
-import Marker_firms from './map/marker_firms';
+import MarkerFirms from './map/marker_firms';
 //calculate bound
 import {get_StationArea} from '../../function/weather/calculate'
 
@@ -36,12 +36,11 @@ interface OuterFunctionProps {
   set_location: Function;
   map_location: LatLonInterface | null;
   LocationType: string;
+
+  OpenAirQuality: Function;
 }
 
 function MapComponent(props:OuterFunctionProps) {
-  
-  const rainviews = new RainView();
-
 
   //เอา url ของ rainview มาใส่ในตัวแปร
   const [rainviews_url, setRainviews_url] = useState<string>("");
@@ -50,6 +49,8 @@ function MapComponent(props:OuterFunctionProps) {
   useEffect(() => {
     const loadPost = async () => {
 
+        const rainviews = new RainView();
+
         //เอา url ของ rainview มาใส่ในตัวแปร
         setRainviews_url(await rainviews.getRainviewUrl())
         //ดึง nowcast มาใส่ในตัวแปร
@@ -57,9 +58,11 @@ function MapComponent(props:OuterFunctionProps) {
     }
 
     // Call the function
-    loadPost();
+    if(props.mapsetting.rain){
+      loadPost();
+    }
 
-  }, []);
+  }, [props.mapsetting.rain]);
 
   //เก็บประเภทแผนที่
   const [map_type, setMap_type] = useState<string>("m");
@@ -209,13 +212,13 @@ function MapComponent(props:OuterFunctionProps) {
 
           {/* แสดงข้อมูลคุณภาพอากาศ */}
           {props.mapsetting.air_quality ?
-            <Air_quality_icon use_aqi={props.mapsetting.air_quality } />
+            <AirQualityIcon use_aqi={props.mapsetting.air_quality } openData={props.OpenAirQuality} />
             : null  
           }
   
           {/* แสดงข้อมูลไฟไหม้ */}
           {props.mapsetting.fire ?
-            <Marker_firms use={props.mapsetting.fire } />
+            <MarkerFirms use={props.mapsetting.fire } />
             : null  
           }
         </MapContainer>

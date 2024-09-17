@@ -7,7 +7,7 @@ import { color_aqi_us } from '../../../function/location_icon_aqi';
 import { chunkDustboy , cacheDustboyData } from '../../../function/weather/airqualityCMU';
 //import getAirqualityData from '../../../function/weather/airqualityCMU';
 
-export default function Air_quality_icon({use_aqi}) {
+export default function Air_quality_icon({use_aqi, openData}) {
 
     //console.log("map", await location_icon(map));
     const [data, setData] = useState<any>([]);
@@ -118,6 +118,14 @@ export default function Air_quality_icon({use_aqi}) {
           key={index}
           position={[marker.dustboy_lat, marker.dustboy_lon]}
           icon={svgIcon(marker.us_aqi)}
+          eventHandlers={{
+            click: () => {
+              openData(marker);
+            },
+            mousedown: () => {
+              openData(marker);
+            },
+          }}
         >
           {/* You can add a popup to the marker */}
         </Marker>
