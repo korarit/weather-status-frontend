@@ -34,7 +34,8 @@ function TMDHourly({open,LangCode, position}:TMDHourlyInterface){
             //ดึงข้อมูล
             const data = await getData48Hour_TMD(lat, lng);
             console.log("data",data);
-            const WeatherForecasts = data.WeatherForecasts[0].forecasts;        
+            const WeatherForecasts = data.WeatherForecasts[0].forecasts;     
+            console.log("WeatherForecasts",WeatherForecasts);   
             //ข้อมูลรายชั่วโมง
             setHourlyTMD(WeatherForecasts);
 
@@ -60,7 +61,7 @@ function TMDHourly({open,LangCode, position}:TMDHourlyInterface){
         }
     }, [open, position]);
 
-    const listHourly = HourlyTMD !== null? HourlyTMD.map((item, index) => (
+    const listHourly = HourlyTMD !== null? HourlyTMD.map((item:any, index:number) => (
         <div key={index}
           className="w-full flex-none h-full border-b-2 pb-[1vh] pt-[0.5vh] first:pt-[0vh] last:pb-[0rem] last:border-b-0 border-black "
         >
@@ -125,12 +126,12 @@ function TMDHourly({open,LangCode, position}:TMDHourlyInterface){
         ): null}
         
         {/* ****** แสดงข้อมูลที่ดึงมาได้ ****** */}
-        { errorStatus === false && loadingStatus === false && HourlyTMD !== null && HourlyTMD.length === 0 ? (
-        <div className='max-h-[90%] w-full mx-auto overflow-y-auto'>
-            <div className=' flex flex-col'>
-                {listHourly}
-            </div>
-        </div>  
+        { errorStatus === false && loadingStatus === false && HourlyTMD !== null ? (
+            <div className='max-h-[90%] w-full mx-auto overflow-y-auto'>
+                <div className=' flex flex-col'>
+                    {listHourly}
+                </div>
+            </div>  
 
         ) : null}
     </>
