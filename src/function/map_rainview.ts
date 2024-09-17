@@ -15,7 +15,8 @@ class Rainview {
 
     public async getNowcastPath(){
         const data = await this.getRainview();
-        const url = data.radar.nowcast[0].path;
+        const lasted = data.radar.past.length - 1;
+        const url = data.radar.past[lasted].path;
         return url;
     }
 }

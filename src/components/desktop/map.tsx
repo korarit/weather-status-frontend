@@ -43,8 +43,7 @@ interface OuterFunctionProps {
 }
 
 function MapComponent(props:OuterFunctionProps) {
-  
-  const rainviews = new RainView();
+
 
 
   //เอา url ของ rainview มาใส่ในตัวแปร
@@ -53,7 +52,7 @@ function MapComponent(props:OuterFunctionProps) {
 
   useEffect(() => {
     const loadPost = async () => {
-
+        const rainviews = new RainView();
         //เอา url ของ rainview มาใส่ในตัวแปร
         setRainviews_url(await rainviews.getRainviewUrl())
         //ดึง nowcast มาใส่ในตัวแปร
@@ -61,9 +60,13 @@ function MapComponent(props:OuterFunctionProps) {
     }
 
     // Call the function
-    loadPost();
 
-  }, []);
+    if (props.mapsetting.rain){
+      loadPost();
+    }
+  }, [props.mapsetting.rain]);
+
+
 
   //เก็บประเภทแผนที่
   const [map_type, setMap_type] = useState<string>("m");
