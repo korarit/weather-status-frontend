@@ -40,39 +40,40 @@ export default function AirQualityModel({open, closeLayer, LangCode , StationDat
     const [aqi_color, set_aqi_color] = useState<string>('');
     const element_pm25 = createRef<HTMLParagraphElement>();
     const element_usaqi = createRef<HTMLParagraphElement>();
+    const element_text = createRef<HTMLDivElement>();
     useEffect(() => {
         if(StationData?.us_aqi){
             if(StationData.us_aqi <= 25){
-                set_aqi_color('green');
+                element_text.current?.classList.add('bg-green-400');
                 
                 element_pm25.current?.classList.add('text-green-600');
                 element_usaqi.current?.classList.add('text-green-600');
             }else if(StationData?.us_aqi <= 50 && StationData?.us_aqi > 25){
-                set_aqi_color('green');
+                element_text.current?.classList.add('bg-green-400');
 
                 element_pm25.current?.classList.add('text-green-600');
                 element_usaqi.current?.classList.add('text-green-600');
             }else if(StationData?.us_aqi <= 100 && StationData?.us_aqi > 50){
-                set_aqi_color('yellow');
+                element_text.current?.classList.add('bg-yellow-400');
 
                 element_pm25.current?.classList.add('text-yellow-600');
                 element_usaqi.current?.classList.add('text-yellow-600');
             }else if(StationData?.us_aqi <= 150 && StationData?.us_aqi > 100){
-                set_aqi_color('orange');
+                element_text.current?.classList.add('bg-orange-400');
 
                 element_pm25.current?.classList.add('text-orange-600');
                 element_usaqi.current?.classList.add('text-orange-600');
             }else if(StationData?.us_aqi <= 200 && StationData?.us_aqi > 150){
-                set_aqi_color('red');
+                element_text.current?.classList.add('bg-red-400');
 
                 element_pm25.current?.classList.add('text-red-600');
             }else if(StationData?.us_aqi <= 300 && StationData?.us_aqi > 200){
-                set_aqi_color('purple');
+                element_text.current?.classList.add('bg-purple-400');
 
                 element_pm25.current?.classList.add('text-purple-600');
                 element_usaqi.current?.classList.add('text-purple-600');
             }else if(StationData?.us_aqi > 300){
-                set_aqi_color('rose');
+                element_text.current?.classList.add('bg-rose-400');
 
                 element_pm25.current?.classList.add('text-rose-600');
                 element_usaqi.current?.classList.add('text-rose-600');
@@ -125,7 +126,7 @@ export default function AirQualityModel({open, closeLayer, LangCode , StationDat
                 </div>
             </div>
 
-            <div className={`p-4 rounded-lg w-[100%] bg-${aqi_color}-400 shadow-sm shadow-black/30 mt-4 text-3xl font-name-kanit`}>
+            <div ref={element_text} className={`p-4 rounded-lg w-[100%] shadow-sm shadow-black/30 mt-4 text-xl font-name-kanit`}>
                 {airq_status_explain(StationData?.us_aqi as number)}
             </div>
 
