@@ -35,7 +35,6 @@ function TMDHourly({open,LangCode, position}:TMDHourlyInterface){
             const data = await getData48Hour_TMD(lat, lng);
             console.log("data",data);
             const WeatherForecasts = data.WeatherForecasts[0].forecasts;     
-            console.log("WeatherForecasts",WeatherForecasts);   
             //ข้อมูลรายชั่วโมง
             setHourlyTMD(WeatherForecasts);
 
