@@ -16,9 +16,9 @@ interface OuterFunctionProps {
 }
 function Layer_map(props:OuterFunctionProps) {
 
-    const [lang, setLang] = useState<any>(translate());
+    const [lang, setLang] = useState<any>(translate(null));
     useEffect(() => {
-        setLang(translate());
+        setLang(translate(null));
     }, [props.LangRe]); 
 
     if(props.mapsetting.use_map === "street"){
