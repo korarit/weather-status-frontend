@@ -37,7 +37,6 @@ export default function AirQualityModel({open, closeLayer, LangCode , StationDat
     }, [open]);
 
     //aqi color
-    const [aqi_color, set_aqi_color] = useState<string>('');
     const element_pm25 = createRef<HTMLParagraphElement>();
     const element_usaqi = createRef<HTMLParagraphElement>();
     const element_text = createRef<HTMLDivElement>();
