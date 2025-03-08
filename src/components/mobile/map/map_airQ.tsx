@@ -1,135 +1,137 @@
-import React,{ useState, useEffect, useLayoutEffect } from 'react';
-
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import L from "leaflet";
-import { Marker, useMapEvents, useMap} from 'react-leaflet'
-
+import { Marker, useMapEvents, useMap } from 'react-leaflet'
 import { color_aqi_us } from '../../../function/location_icon_aqi';
-import { chunkDustboy , cacheDustboyData } from '../../../function/weather/airqualityCMU';
-//import getAirqualityData from '../../../function/weather/airqualityCMU';
+import { chunkDustboy, cacheDustboyData } from '../../../function/weather/airqualityCMU';
 
-export default function Air_quality_icon({use_aqi, openData}) {
-
-    //console.log("map", await location_icon(map));
+export default function Air_quality_icon({ use_aqi, openModal }) {
     const [data, setData] = useState<any>([]);
-  
-    // async function get_markers(e){
-    //   if(e.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)){
-    //     const maker_location = await Location_icon_aqi(e);
-    //     //console.log("abc", maker_location)
-  
-    //     //กันกรณีดึงข้อมูลไม่ทัน เกินปัญหาจาก API ที่ไปดึงไม่ทัน
-    //     if(maker_location && maker_location.markers){
-          
-    //       setData(maker_location.markers); 
-    //     }
-    //   }
-    // }
-
-    async function get_markersDustBoy(e){
-      //console.time("DustboyTimer");
-      const bounds = e.getBounds();
-      const chunk = await chunkDustboy(bounds);
-      const maker_location = await cacheDustboyData(chunk);
-
-      const list_marker: any[] = [];
-      maker_location.map((item: any) => {
-        if(bounds.contains([item.dustboy_lat,item.dustboy_lon])){
-          list_marker.push(item);
+    const [firstLoading, setStatusLoading] = useState<boolean>(true);
+    
+    async function get_markersDustBoy(e) {
+      try {
+        const bounds = e.getBounds();
+    
+        // ตรวจสอบว่า bounds ถูกต้องหรือไม่
+        if (!bounds || !(bounds instanceof L.LatLngBounds)) {
+          console.error("Invalid bounds object", bounds);
+          return;
         }
-      });
-      //console.time("DustboyTimer");
-      //console.log("list_marker_dustboy", list_marker);
-      if(list_marker.length > 0){
-        setData(list_marker);
-        //console.log("length_marker_chunk", chunk);
-        //console.log("length_marker_chuck", maker_location.length);
+    
+        // ดึงข้อมูล chunk จาก bounds ที่ได้
+        const chunk = await chunkDustboy(bounds);
+    
+        // ตรวจสอบว่า chunk เป็น array ที่ถูกต้อง
+        if (!Array.isArray(chunk)) {
+          console.error("chunkDustboy did not return an array", chunk);
+          return;
+        }
+    
+        const maker_location = await cacheDustboyData(chunk);
+    
+        // ตรวจสอบว่า maker_location เป็น array หรือไม่
+        if (!Array.isArray(maker_location)) {
+          console.error("maker_location is not an array", maker_location);
+          return;
+        }
+    
+        const list_marker: any[] = [];
+    
+        maker_location.forEach((item: any) => {
+          if (item && item.dustboy_lat && item.dustboy_lon) {
+            // ตรวจสอบว่า LatLng ของ marker อยู่ใน bounds หรือไม่
+            const markerLatLng = new L.LatLng(item.dustboy_lat, item.dustboy_lon);
+            if (bounds.contains(markerLatLng)) {
+              list_marker.push(item);
+            }
+          }
+        });
+    
+        if (list_marker.length > 0) {
+          // อัปเดต state ด้วย marker ที่ได้
+          setData(list_marker);
+        } else {
+          console.log("No valid markers found in the bounds.");
+        }
+      } catch (error) {
+        console.error("Error in get_markersDustBoy:", error);
       }
     }
-  
+    
   
     useMapEvents({
       dragend: async (e) => {
-        //เช็คว่า zoom เยอะหน่อยไม่งั้น lag
-        if(e.target.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)){
-          //get_markers(e.target)
-          //console.log("test chunk", chunkDustboy(e.target.getBounds()))
-          get_markersDustBoy(e.target)
+        try {
+          if(e.target.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)){
+            get_markersDustBoy(e.target);
+          }
+        } catch (error) {
+          console.error("Error in dragend event:", error);
         }
       },  
       zoom: async (e) => {
-        //เช็คว่า zoom เยอะหน่อยไม่งั้น lag
-        if(e.target.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)){
-          //get_markers(e.target)
-          //console.log("test chunk", chunkDustboy(e.target.getBounds()))
-          get_markersDustBoy(e.target)
+        try {
+          if(e.target.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)){
+            get_markersDustBoy(e.target);
+          }
+        } catch (error) {
+          console.error("Error in zoom event:", error);
         }
       }
     });
-  
-    //เช็คว่า load ครั้งแรกไหม
-    const [firstLoading, setStatusLoading] = useState<boolean>(true);
   
     useLayoutEffect(() => {
       if (firstLoading) {
         setStatusLoading(false);
         return;
       }
-  
-      //console.log("componentDidUpdateFunction");
     });
   
-  
     const map = useMap();
+    
     const get_first_data = async () => {
-      if(firstLoading === false){
-        //get_markers(map)
-        get_markersDustBoy(map)
-      }else{
-        //console.log("first loading");
-        //get_markers(map);
-        get_markersDustBoy(map)
-      }
+        get_markersDustBoy(map);
     }
     
     useEffect(() => {
       get_first_data();
     }, [use_aqi]);
   
-    const svgIcon = (aqi) => L.divIcon({
-      html: `
-      <svg
-          width="26"
-          height="26"
-          fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        >
-       <circle r="13" cx="13" cy="13" fill="${color_aqi_us(aqi)}" opacity="1" />
-       <text x='50%' y='50%' fill="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold" font-size="1rem">${aqi}</text>
-    </svg>`,
-      className: "svg-icon",
-      iconSize: [24, 24],
-    });
+    // ใช้ฟังก์ชันสร้าง icon ที่ไม่ใช้ JSX
+    const svgIcon = (aqi) => {
+      const colorValue = color_aqi_us(aqi);
+      return L.divIcon({
+        html: `
+          <svg width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle r="13" cx="13" cy="13" fill="${colorValue}" opacity="1"></circle>
+            <text x="50%" y="50%" fill="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold" font-size="1rem">${aqi}</text>
+          </svg>
+        `,
+        className: "svg-icon",
+        iconSize: [24, 24],
+      });
+    };
   
     return (
-      // Make sure you're returning JSX here
       <>
-      {use_aqi && (map.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string)) ? data.map((marker:any, index: number) => (
-          <Marker
-          key={index}
-          position={[marker.dustboy_lat, marker.dustboy_lon]}
-          icon={svgIcon(marker.us_aqi)}
-          eventHandlers={{
-            click: () => {
-              openData(marker);
-            },
-            mousedown: () => {
-              openData(marker);
-            },
-          }}
-        >
-          {/* You can add a popup to the marker */}
-        </Marker>
-        )) : null }
+        {use_aqi && map.getZoom() >= parseInt(process.env.REACT_APP_ZOOM_MIN_AQI as string) ? 
+          data.map((marker: any, index: number) =>  (
+              <Marker
+                key={index}
+                position={[marker.dustboy_lat, marker.dustboy_lon]}
+                icon={svgIcon(marker.us_aqi)}
+                eventHandlers={{
+                  click: () => {
+                    openModal(marker);
+                  },
+                  mousedown: () => {
+                    openModal(marker);
+                  },
+                }}
+              />
+            )
+          ) 
+        : null}
       </>
     );
 }
