@@ -42,9 +42,9 @@ interface OuterFunctionProps {
   zoom: any;
 }
 
+const canvasRenderer = L.canvas();
+
 function MapComponent(props:OuterFunctionProps) {
-
-
 
   //เอา url ของ rainview มาใส่ในตัวแปร
   const [rainviews_url, setRainviews_url] = useState<string>("");
@@ -219,7 +219,7 @@ function MapComponent(props:OuterFunctionProps) {
       
     return (
       <div className='w-[100%] h-[100%]'>
-        <MapContainer center={defaultLocation} zoom={16} maxZoom={18} minZoom={6} zoomControl={false} scrollWheelZoom={true}  ref={setMap}>
+        <MapContainer center={defaultLocation} zoom={16} maxZoom={18} minZoom={6} zoomControl={false} scrollWheelZoom={true}  renderer={canvasRenderer}  ref={setMap}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">Google</a> contributors'
             url={`http://{s}.google.com/vt?lyrs=${map_type}&x={x}&y={y}&z={z}`}
