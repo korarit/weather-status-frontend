@@ -86,7 +86,6 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
         lat: number;
         lon: number;
     }
-    const [can_use_gps , setPermissionGps] = useState<boolean>();
 
     function WeatherSide(LatLon: LatLonInterface){
         setLatLonWeather(LatLon);
@@ -98,9 +97,6 @@ function DesktopView({Device, LatLonWeather, LocationType, searchValue, mapLayer
             setLatLonWeather({lat: position.coords.latitude, lon: position.coords.longitude});
             setLocationType("gps");
         }, (error) => {
-            if(error.code === 1){
-                setPermissionGps(false);
-            }
         });
     }
 
