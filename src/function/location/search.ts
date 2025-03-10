@@ -75,7 +75,7 @@ class Search_data {
         if(LocalData !== null) countLocalSuggest = LocalData.length;
 
         if (LocalData !== null) {
-            LocalData.map((item:any) => {
+            LocalData.forEach((item:any) => {
                 listLocalData.push({
                     name: item.name,
                     type: 'history',
@@ -90,7 +90,7 @@ class Search_data {
         if(countLocalSuggest === 0) countLocalSuggest = 15
         const SuggestData = await this.getSuggestLogdomap(search_text, 20 - countLocalSuggest);
         if (SuggestData.data !== null && SuggestData['data'].length > 0) {
-            SuggestData['data'].map((item:any) => {
+            SuggestData['data'].forEach((item:any) => {
                 //check w have in local database 
                 if(LocalData !== null){
                     const checkHave = LocalData.find((element:any) => element.name === item.w);

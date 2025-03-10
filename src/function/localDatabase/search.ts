@@ -34,7 +34,7 @@ function searchAlgorithm(keyword:string, data:any, searchFields:Array<string>) {
             nonStringFields.add(field.normalized);
         }
     }
-    data.map((item:any) => {
+    data.forEach((item:any) => {
         let matches = true;
         for (let j = 0; j < numKeywords && matches; j++) {
             const keyword = keywords[j];
@@ -97,7 +97,7 @@ export async function LastedHistory(){
     const LocalData:any = await GetLastedDataFromDB("search", 5);
     //console.log('LastedHistory',LocalData);
     if (LocalData !== null) {
-        LocalData.map((item:any) => {
+        LocalData.forEach((item:any) => {
             listLocalData.push({
                 name: item.name,
                 type: 'history',

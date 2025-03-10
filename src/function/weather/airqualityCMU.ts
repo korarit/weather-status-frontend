@@ -414,7 +414,7 @@ export async function DustboyNear(lat:number, lng:number){
         if(data !== 'error_502'){
             //คำนวนระยะทางของตำแหน่งปัจจุบันกับสถานี
             const list_near:{distance:number, data:any}[] = [];
-            data.map((item:any) => {
+            data.forEach((item:any) => {
                 //ระยะทางของสถานี dustboy กับพิกัดปัจจุบัน
                 let distance:number = L.latLng(lat, lng).distanceTo(L.latLng(item.dustboy_lat, item.dustboy_lon));
                 //ระยะทางน้อยกว่าหรือเท่ากับ REACT_APP_DUSTBOY_RADIUS ใน env
