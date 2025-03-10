@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
-import {getDataToday_TMD, cond_status_txt} from '../../../../function/weather/data';
-import {Calcius_to_fahrenheit, heat_index, airq_status_txt} from '../../../../function/weather/calculate';
+import {getDataToday_TMD, cond_status_txt , getPM2_5_GISTDA} from '../../../../function/weather/data';
+import {Calcius_to_fahrenheit, heat_index, airq_status_txt, pm25_to_aqi } from '../../../../function/weather/calculate';
 import {DustboyNear} from '../../../../function/weather/airqualityCMU';
 
 import translate from '../../../../function/languages';
@@ -27,18 +27,28 @@ interface OuterFunctionProps {
     useFrom: string;
     LangRe: string;
 }
+
+interface TMDNowData {
+    temp: number;
+    temp_feel: number;
+    humidity: number;
+    rain: number;
+    cond_txt: string;
+    cond: number;
+    time: string;
+    air_quality:{
+        have: boolean;
+        name: string;
+        api?: number;
+        aqi_text?: string;
+        concentration?: number | string;
+        mainPollutant?: string;
+    }
+}
+
 function TMDNow(props:OuterFunctionProps) {
 
-    const [NowTMD, setNowTMD] = useState<any>({
-        temp: '0',
-        temp_feel: '0',
-        humidity: 0,
-        rain: 0,
-        cond_txt: '',
-        cond: 0,
-        time: '',
-        air_quality:{}
-    });
+    const [NowTMD, setNowTMD] = useState<TMDNowData|null>(null);
 
     const [HourlyTMD, setHourlyTMD] = useState<any>([]);
 
@@ -91,6 +101,7 @@ function TMDNow(props:OuterFunctionProps) {
                     time: WeatherForecasts[0].time,
                     air_quality:{
                         have: true,
+                        name: 'station',
                         api: aqiData,
                         aqi_text: airq_status_txt(aqiData),
                         concentration: concentrationData,
@@ -98,6 +109,9 @@ function TMDNow(props:OuterFunctionProps) {
                     }
                 });
             }else{
+                const gistda_airq = await getPM2_5_GISTDA(lat, lon);
+                console.log("gistda_airq",gistda_airq);
+
                 setNowTMD({
                     temp: WeatherForecasts[0].data.tc,
                     temp_feel: temp_feel,
@@ -107,7 +121,12 @@ function TMDNow(props:OuterFunctionProps) {
                     cond: WeatherForecasts[0].data.cond,
                     time: WeatherForecasts[0].time,
                     air_quality:{
-                        have: false
+                        have: true,
+                        name: "gistda",
+                        api: pm25_to_aqi(gistda_airq.data.pm25[0]),
+                        aqi_text: airq_status_txt(pm25_to_aqi(gistda_airq.data.pm25[0])),
+                        concentration: parseFloat(Number(gistda_airq.data.pm25[0]).toFixed(2)),
+                        mainPollutant: 'pm25'
                     }
                 });
             }
@@ -187,7 +206,7 @@ function TMDNow(props:OuterFunctionProps) {
           <>
           
           {/* ตรวจสอบว่าไม่มี error */}
-          { errorStatus === false ? (
+          { errorStatus === false && NowTMD ? (
             <>
             {/* ****** แสดงข้อมูลที่ดึงได้มา ****** */}
             <div className="relative">
@@ -238,7 +257,7 @@ function TMDNow(props:OuterFunctionProps) {
                 <div className="">
                     <div className="bg-orange-100 rounded-lg w-full h-fit shadow-md shadow-neutral-800/40 mt-[2vh] mb-[1vh] px-[2vh] py-[2vh]">
                         <p className="text-[2.7vh] font-semibold font-name-kanit">
-                        {lang["now_header"]["air_quality_tmd"]}
+                        {lang["now_header"]["air_quality_tmd"]} {lang["tmd_airq_refer"][NowTMD.air_quality.name]}
                         </p>
                         {NowTMD.air_quality.have ? (
                         <div className="grid grid-cols-12 gap-x-[2vh] mt-[0.5vh]">
@@ -257,11 +276,9 @@ function TMDNow(props:OuterFunctionProps) {
                                     {NowTMD.air_quality.aqi_text}
                                 </p>
                                 <p className="text-[1.4rem] font-normal leading-[1.5rem] font-name-kanit">
-                                    {
-                                    lang["tmd_airq_name_data"][
-                                        NowTMD.air_quality.mainPollutant
-                                    ]
-                                    }
+                                    {NowTMD.air_quality.mainPollutant &&(
+                                        lang["tmd_airq_name_data"][NowTMD.air_quality.mainPollutant]
+                                    )}
                                 </p>
                                 <p className="text-[1.4rem] font-extralight leading-[1.4rem] font-name-kanit">
                                     {NowTMD.air_quality.concentration} µg/m³

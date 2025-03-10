@@ -83,7 +83,7 @@
     "now_header":{
         "hourly_forecast": "Hourly forecast",
         "air_quality": "air quality info",
-        "air_quality_tmd": "air quality info from station",
+        "air_quality_tmd": "air quality info from",
         "prophecy_air_quality": "Air quality forecast"
     },
     "cloudcover": "Cloud cover",
@@ -117,6 +117,10 @@
         "PM2.5":"small dust particles PM2.5",
         "pm25":"small dust particles PM2.5",
         "pm10":"large dust particles PM10"
+    },
+    "tmd_airq_refer":{
+        "station":"Station",
+        "gistda":"GISTDA"
     },
     "tmd_status_airq":[
         "very good",

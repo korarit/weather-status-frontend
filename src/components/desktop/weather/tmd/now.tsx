@@ -4,8 +4,8 @@ import translate from "../../../../function/languages";
 
 import LoadingSpin from '../../loading_spin';
 
-import {getDataToday_TMD, cond_status_txt} from "../../../../function/weather/data";
-import {heat_index, Calcius_to_fahrenheit, airq_status_txt} from "../../../../function/weather/calculate";
+import {getDataToday_TMD, cond_status_txt, getPM2_5_GISTDA} from "../../../../function/weather/data";
+import {heat_index, Calcius_to_fahrenheit, pm25_to_aqi, airq_status_txt, airq_status_explain} from "../../../../function/weather/calculate";
 import {DustboyNear} from "../../../../function/weather/airqualityCMU";
 
 interface NowType{
@@ -13,6 +13,25 @@ interface NowType{
     LangCode: string;
     position: {lat:number, lon:number} | null;
 }
+
+interface TMDNowData{
+    temp: number;
+    temp_feel: number;
+    humidity: number;
+    rain: number;
+    cond_txt: string;
+    cond: number;
+    time: string;
+    air_quality: {
+        have: boolean;
+        name: string;
+        api?: number;
+        aqi_text?: string;
+        concentration?: number;
+        mainPollutant?: string;
+    }
+}
+
 function TMDNow({open, LangCode, position}:NowType){
 
     const [errorStatus, setErrorStatus] = useState<boolean>(false);
@@ -24,7 +43,7 @@ function TMDNow({open, LangCode, position}:NowType){
     }, [LangCode])
 
 
-    const [NowTMD, setNowTMD] = useState<any>(null);
+    const [NowTMD, setNowTMD] = useState<TMDNowData|null>(null);
     const [HourlyTMD, setHourlyTMD] = useState<any>(null);
 
     async function getTMD_today(lat:number, lng:number){
@@ -75,6 +94,7 @@ function TMDNow({open, LangCode, position}:NowType){
                     time: WeatherForecasts[0].time,
                     air_quality:{
                         have: true,
+                        name: "station",
                         api: aqiData,
                         aqi_text: airq_status_txt(aqiData),
                         concentration: concentrationData,
@@ -82,6 +102,9 @@ function TMDNow({open, LangCode, position}:NowType){
                     }
                 });
             }else{
+                const gistda_airq = await getPM2_5_GISTDA(lat, lng);
+                console.log("gistda_airq",gistda_airq);
+
                 setNowTMD({
                     temp: WeatherForecasts[0].data.tc,
                     temp_feel: temp_feel,
@@ -91,7 +114,12 @@ function TMDNow({open, LangCode, position}:NowType){
                     cond: WeatherForecasts[0].data.cond,
                     time: WeatherForecasts[0].time,
                     air_quality:{
-                        have: false
+                        have: true,
+                        name: "gistda",
+                        api: pm25_to_aqi(gistda_airq.data.pm25[0]),
+                        aqi_text: airq_status_txt(pm25_to_aqi(gistda_airq.data.pm25[0])),
+                        concentration: parseFloat(Number(gistda_airq.data.pm25[0]).toFixed(2)),
+                        mainPollutant: 'pm25'
                     }
                 });
             }
@@ -252,7 +280,7 @@ function TMDNow({open, LangCode, position}:NowType){
             <div className="">
                 <div className="bg-orange-100 rounded-lg w-full h-fit shadow-md shadow-neutral-800/40 mt-[2vh] mb-[1vh] px-[2vh] py-[1.5vh]">
                     <p className="text-[2.5vh] font-semibold font-name-kanit">
-                        {lang["now_header"]["air_quality_tmd"]}
+                        {lang["now_header"]["air_quality_tmd"]} {lang["tmd_airq_refer"][NowTMD.air_quality.name]}
                     </p>
                     {NowTMD.air_quality.have ? (
                     <div className="grid grid-cols-12 gap-6">
@@ -269,9 +297,9 @@ function TMDNow({open, LangCode, position}:NowType){
                                 {NowTMD.air_quality.aqi_text}
                             </p>
                             <p className="text-[1.25rem] font-normal leading-[2.5vh] font-name-kanit">
-                                {
+                                {NowTMD.air_quality.mainPollutant && (
                                     lang["tmd_airq_name_data"][NowTMD.air_quality.mainPollutant]
-                                }
+                                )}
                             </p>
                             <p className="text-[1.25rem] font-extralight font-name-kanit">
                                 {NowTMD.air_quality.concentration} µg/m³
