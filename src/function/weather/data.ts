@@ -518,3 +518,36 @@ export async function getDataInDate_Wunderground(lat:number, lon:number, count_d
         return null;
     }
 }
+
+
+///////////////////////////////////////// เช็คฝุ่น GISTDA /////////////////////////////////////////
+export async function getPM2_5_GISTDA(lat:number, lng:number){
+    try{
+        const url = `https://pm25.gistda.or.th/rest/pred/getPm25byLocation?lat=${lat}&lng=${lng}`;
+        const response:any = await axios.get(url, 
+            {
+                timeout: 5000
+            }
+        
+        );
+
+        if(response.status !== 200){
+            console.log(response);
+            return null;
+        }
+
+        const data = await response.data;
+        console.log(data);
+
+        return data;
+
+    }catch(error:any){
+        console.log(error);
+        if(error.response.status === 401){
+            window.location.reload();
+        }else{
+            //console.log(error);
+            return null;
+        }
+    }
+}
