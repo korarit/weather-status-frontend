@@ -16,6 +16,8 @@ import RainView from '../../function/map_rainview';
 import AirqualityIcon from './map/AirQualityStation';
 //firms
 import MarkerFirms from './map/FirmsPoint';
+//rain point
+import RainTilePicker from './map/rainPoint';
 //calculate bound
 import {get_StationArea} from '../../function/weather/calculate'
 
@@ -228,11 +230,15 @@ function MapComponent(props:OuterFunctionProps) {
 
             {/* rainview พยากรณ์ฝน */}
           {props.mapsetting.rain ? (
-          <TileLayer
-            url={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`}
-            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
-            opacity={0.3}
-          />
+          <>
+            <TileLayer
+              url={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`}
+              subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+              opacity={0.3}
+              crossOrigin='anonymous'
+            />
+            <RainTilePicker rainTileUrl={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`} />
+          </>
           ) : null}
 
           {/* แสดงข้อมูลคุณภาพอากาศ */}

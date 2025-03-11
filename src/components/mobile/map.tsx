@@ -16,6 +16,8 @@ import RainView from '../../function/map_rainview';
 import AirQualityIcon from './map/map_airQ';
 //firms
 import MarkerFirms from './map/marker_firms';
+// rain point
+import RainPoint from './map/rainPoint';
 //calculate bound
 import {get_StationArea} from '../../function/weather/calculate'
 
@@ -203,16 +205,20 @@ function MapComponent(props:OuterFunctionProps) {
 
             {/* rainview พยากรณ์ฝน */}
           {props.mapsetting.rain ? (
-          <TileLayer
-            url={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`}
-            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
-            opacity={0.3}
-          />
+            <>
+              <TileLayer
+                url={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`}
+                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                opacity={0.3}
+              />
+
+              <RainPoint rainTileUrl={`${rainviews_url}${rainview_nowcast}/256/{z}/{x}/{y}/7/1_0.png`} />
+            </>
           ) : null}
 
           {/* แสดงข้อมูลคุณภาพอากาศ */}
           {props.mapsetting.air_quality ?
-            <AirQualityIcon use_aqi={props.mapsetting.air_quality } openData={props.OpenAirQuality} />
+            <AirQualityIcon use_aqi={props.mapsetting.air_quality } openModal={props.OpenAirQuality} />
             : null  
           }
   
