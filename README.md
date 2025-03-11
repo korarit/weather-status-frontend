@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+## Weather Website Project (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+เป็นเว็บไซต์รวบรวมข้อมูลสภาพอากาศ จากหน่วยงานต่าง ๆ ภายในประเทศไทย ที่ค่อยข้างกระจัดกระจาย มาแสดงผล โดยได้ต้นแบบ UX/UI จาก google map มีการรองรับ
+**Responsive Support**
 
-## Available Scripts
+[**DEMO LINK**](https://weather.korarit.website/)
 
-In the project directory, you can run:
+### แหล่งข้อมูล
+- กรมอุตุวิทยา กระทรวงดิจิทัลเพื่อเศรษฐกิจและสังคม
+- คลังข้อมูลน้ำแห่งชาติ
+- สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (GISTDA)
+- Air Quality Information Center สำนักงานการวิจัยแห่งชาติ (วช.)
+- Nasa Fire Information for Resource Management System
+- wunderground.com
+- Google Map
+- LongdoMap
 
-### `npm start`
+### Tech Stack
+![My Skills Framework](https://go-skill-icons.vercel.app/api/icons?i=nodejs,react,tailwindcss,leaflet,cloudflare,typescript,vercel&theme=dark&perline=11)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### How to install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+use **npm install** for install package
+```
+npm install
+```
 
-### `npm test`
+Example **.env**
+```
+REACT_APP_CACHE_NAME='weather-project-krt'
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+########################## cloudflare turnstile ##########################
+#ใส่ค่า site key ที่ได้จาก cloudflare turnstile
+REACT_APP_TURNSTILE_SITE_KEY=""
+#ใช้งาน turnstile หรือไม่ (true ใช้ , false ไม่ใช้ และการตั้งบน backend ต้องตั้งค่าเหมือนกัน)
+REACT_APP_TURNSTILE_USE=true
 
-### `npm run build`
+################################ rule ####################################
+#เปิดต้องยอมรับ ข้อตกลงการใช้งาน (true เปิด , false ปิด)
+REACT_APP_RULE_USE=true
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+########################## การเรียกใช้งาน API ต่างๆ ##########################
+#ที่อยู่ของ API หลัก
+REACT_APP_API_MAIN=""
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#รายชื่อของดาวเทียมสำหรับดึงข้อมูล จุดความร้อน
+REACT_APP_LIST_SATELITE="MODIS_NRT,VIIRS_NOAA20_NRT,VIIRS_SNPP_NRT"
+# เวลาหมดอายุของ cache ของข้อมูลจุดความร้อน (นาที)
+REACT_APP_FIMS_CACHE_TIME=60
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#API KEY สำหรับดึงข้อมูลจาก weather.com ของ wunderground
+REACT_APP_API_WUNDERGROUND_KEY=""
 
-### `npm run eject`
+#เวลาหมดอายุของ cache ของข้อมูลคุณภาพอากาศ dustboy (นาที)
+REACT_APP_DUSTBOY_CACHE_TIME=15
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#เวลาหมดอายุของ cache ของข้อมูลพยากรณ์อากาศรายชั่วโมง กรมอุตุ (นาที)
+REACT_APP_TMD_HOURLY_CACHE_TIME=15
+#เวลาหมดอายุของ cache ของข้อมูลพยากรณ์อากาศรายวัน กรมอุตุ (นาที)
+REACT_APP_DAILYTMD_CACHE_TIME=30
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+########################## การตั้งค่าส่วนของแผนที่ ##########################
+#ระดับการซูมของแผนที่สำหรับการแสดงผลค่า AQI
+REACT_APP_ZOOM_MIN_AQI=6
+#icon file url
+REACT_APP_GPS_MARKER_ICON='/person.png'
+#icon file url 
+REACT_APP_PLACE_MARKER_ICON='/map-pin-place.png'
+#ระดับการซูมของแผนที่เมื่อไปยังจุดที่เลือก (GPS , Place)
+REACT_APP_FLY_TO_ZOOM='17'
+### ค่า lat และ lon ที่ใช้เป็นตำแหน่งเริ่มต้นของแผนที่ ###
+# ค่าเริ่มต้นโดยค้นหาจาก IP (true ใช้ , false ปิด)
+REACT_APP_DEFAULT_LOCATION_IP=false
+# ค่าเริ่มต้นจากการกำหนดเอง
+REACT_APP_DEFAULT_LAT='19.027984'
+REACT_APP_DEFAULT_LON='99.897197'
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+########################## การตั้งค่าการแสดงผล ##########################
+#ความกว้างของ sidebar สำหรับ mobile และ tablet
+REACT_APP_MOBILE_SIDEBAR_WIDTH='60%'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+########################## อื่นๆ ##########################
+#รัศมีของสถานี dustboy ที่จะดึงข้อมูลออกมาในหน้า now ของกรมอุตุวิทยา (เมตร)
+REACT_APP_DUSTBOY_RADIUS=2500
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+before install package and add .env can
+```
+npm run start
+```
