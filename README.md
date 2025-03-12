@@ -1,11 +1,11 @@
-## Weather Website Project (Frontend)
+# Weather Website Project (Frontend)
 
 เป็นเว็บไซต์รวบรวมข้อมูลสภาพอากาศ จากหน่วยงานต่าง ๆ ภายในประเทศไทย ที่ค่อยข้างกระจัดกระจาย มาแสดงผล โดยได้ต้นแบบ UX/UI จาก google map มีการรองรับ
 **Responsive Support**
 
 [**DEMO LINK**](https://weather.korarit.website/)
 
-### แหล่งข้อมูล
+## แหล่งข้อมูล
 - กรมอุตุวิทยา กระทรวงดิจิทัลเพื่อเศรษฐกิจและสังคม
 - คลังข้อมูลน้ำแห่งชาติ
 - สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (GISTDA)
@@ -15,10 +15,10 @@
 - Google Map
 - LongdoMap
 
-### Tech Stack
+## Tech Stack
 ![My Skills Framework](https://go-skill-icons.vercel.app/api/icons?i=nodejs,react,tailwindcss,leaflet,cloudflare,typescript,vercel&theme=dark&perline=11)
 
-### How to install
+## How to install
 
 use **npm install** for install package
 ```
